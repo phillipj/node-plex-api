@@ -1,6 +1,6 @@
 {
   "name": "plex-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple wrapper for querying against HTTP API on the Plex Media Server",
   "main": "index.js",
   "directories": {
@@ -21,6 +21,6 @@
     "plex",
     "api"
   ],
-  "author": "Phillip Johnsen <johphi@gmail.com>",
-  "license": "BSD"
+  "author": "Phillip Johnsen <phillip@lightweight.no>",
+  "license": "MIT"
 }
