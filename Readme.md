@@ -8,7 +8,7 @@ Translates the XML given from the server to JSON.
 
 ```js
 var PlexAPI = require("plex-api");
-var client = new PlexAPI("http://192.168.0.1");
+var client = new PlexAPI("192.168.0.1");
 
 client.query("/", function (error, result) {
 	if (err) {
