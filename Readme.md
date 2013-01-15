@@ -45,7 +45,7 @@ For more information about the API capabilities, see the [HTTP/API Control descr
 ## License
 (The MIT License)
 
-Copyright (c) 2013 Phillip Johnsen <phillip@lightweight.no>
+Copyright (c) 2013 Phillip Johnsen &lt;phillip@lightweight.no&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
