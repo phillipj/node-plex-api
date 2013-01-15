@@ -21,6 +21,7 @@ client.query("/", function (error, result) {
 ```
 
 **perform() : Perform library update of section of key "1"**
+
 When performing an "action" on the HTTP API, the response body will be empty.
 As the response content itself will be worthless, perform() acts on the HTTP status codes the server responds with.
 
