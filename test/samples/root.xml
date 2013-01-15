@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MediaContainer size="2" flashInstalled="0" friendlyName="awesome plex server" machineIdentifier="ccda04d6d8e157" mediaAnalysisVersion="1" myPlex="1" platform="MacOSX" platformVersion="10.8.2" requestParametersInCookie="1" silverlightInstalled="0" soundflowerInstalled="0" sync="1" transcoderActiveVideoSessions="0" transcoderAudio="1" transcoderVideoBitrates="64,96,208,320,720,1500,2000,3000,4000,8000,10000,12000,20000" transcoderVideoQualities="0,1,2,3,4,5,6,7,8,9,10,11,12" transcoderVideoResolutions="128,128,160,240,320,480,768,720,720,1080,1080,1080,1080" updatedAt="1358044767" version="0.9.7.9.375-d056f10" webkit="1">
+	<Directory count="1" key="clients" title="clients" />
+	<Directory count="1" key="library" title="library" />
+</MediaContainer>
