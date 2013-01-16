@@ -7,7 +7,10 @@ Translates the XML given from the server to JSON.
 
 ## Usage
 
-**query(uri, callback) : Retrieve content from an URI**
+**query(uri, callback) : Retrieve content from URI**
+
+Aside from translating all XML properties into JSON properties, a .uri-attribute are created to easier follow the URIs available in the HTTP API.
+
 ```js
 var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
@@ -19,6 +22,7 @@ client.query("/", function (error, result) {
 
 	result.attributes; // MediaContainer attributes
 	result.directories; // array of Directory items
+						// all directories will have the .uri-attribute created / attached
 });
 ```
 
@@ -43,7 +47,9 @@ client.perform("/library/sections/1/refresh", function (error, isSuccess) {
 });
 ```
 
-**find(uri, [criterias], callback) : Find matching Directory items on URI**
+**find(uri, [{criterias}], callback) : Find matching Directory items on URI**
+
+Uses the .query() behind the scenes, giving all directories the beloved .uri-attribute.
 
 ```js
 var PlexAPI = require("plex-api");
@@ -58,7 +64,7 @@ client.find("/library/sections", {type: "movie"}, function (error, directories) 
 	// directories would be an array of sections whose type are "movie"
 });
 
-// criterias are optional
+// shorthand to retrieve all Directories
 client.find("/", function (error, directories) {
 	if (error) {
 		throw new Error("Could not connect to server");
