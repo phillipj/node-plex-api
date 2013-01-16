@@ -4,16 +4,24 @@ var fs = require("fs");
 var PLEX_SERVER_PORT = 32400;
 
 var server = http.createServer(function(req, res) {
+	var sampleFilename = "root";
+
 	if (req.url === "/library/sections/1/refresh") {
 		res.writeHead(200);
-		res.end();
-	} else {
-		fs.readFile("test/samples/root.xml", function(err, content) {
-			res.write(content);
-			res.end();
-		});
-	}
+		return res.end();
+	} else if (req.url === "/library/sections") {
+		sampleFilename = "library_sections";
+	} 
+
+	deliverXml(sampleFilename, res);
 });
+
+function deliverXml(filename, response) {
+	fs.readFile("test/samples/"+ filename +".xml", function(err, content) {
+		response.write(content);
+		response.end();
+	});
+}
 
 module.exports = {
 	start: function (port) {
