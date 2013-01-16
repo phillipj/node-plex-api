@@ -1,6 +1,4 @@
-[![Build Status](https://api.travis-ci.org/phillipj/node-plex-api.png)](http://travis-ci.org/phillipj/node-plex-api)
-
-# plex-api
+# plex-api [![Build Status](https://api.travis-ci.org/phillipj/node-plex-api.png)](http://travis-ci.org/phillipj/node-plex-api)
 
 Small module used to query the Plex Media Server HTTP API.
 Translates the XML given from the server to JSON.
