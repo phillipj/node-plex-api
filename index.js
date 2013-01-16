@@ -24,7 +24,7 @@ PlexAPI.prototype.query = function(url, callback) {
 
 		if (!err) {
 			result = {
-				attributes: json.MediaContainer.$,
+				attributes: json.MediaContainer.attributes,
 				directories: json.MediaContainer.Directory
 			};
 		}
@@ -65,7 +65,7 @@ function retrieveJsonFromUrl(relativeUrl, callback) {
 }
 
 function convertXmlToJson(xml, callback) {
-	var parser = new xml2json.Parser();
+	var parser = new xml2json.Parser({ attrkey: "attributes" });
 	parser.parseString(xml, function(err, result) {
 		callback(err, result);
 	});
