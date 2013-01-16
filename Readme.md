@@ -7,7 +7,7 @@ Translates the XML given from the server to JSON.
 
 ## Usage
 
-**query() : Retrieve content from an URI**
+**query(uri, callback) : Retrieve content from an URI**
 ```js
 var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
@@ -22,7 +22,7 @@ client.query("/", function (error, result) {
 });
 ```
 
-**perform() : Perform an API action**
+**perform(uri, callback) : Perform an API action**
 
 When performing an "action" on the HTTP API, the response body will be empty.
 As the response content itself will be worthless, perform() acts on the HTTP status codes the server responds with.
@@ -40,6 +40,31 @@ client.perform("/library/sections/1/refresh", function (error, isSuccess) {
 	if (isSuccess) {
 		// successfully started to refresh library section #1
 	}
+});
+```
+
+**find(uri, [criterias], callback) : Find matching Directory items on URI**
+
+```js
+var PlexAPI = require("plex-api");
+var client = new PlexAPI("192.168.0.1");
+
+// filter directories on Directory attributes
+client.find("/library/sections", {type: "movie"}, function (error, directories) {
+	if (error) {
+		throw new Error("Could not connect to server");
+	}
+
+	// directories would be an array of sections whose type are "movie"
+});
+
+// criterias are optional
+client.find("/", function (error, directories) {
+	if (error) {
+		throw new Error("Could not connect to server");
+	}
+
+	// directories would be an array of Directory items
 });
 ```
 

@@ -21,8 +21,12 @@ PlexAPI.prototype.query = function(url, callback) {
 
 	retrieveJsonFromUrl.call(this, url, function(err, json) {
 		var result;
+		var items;
 
 		if (!err) {
+			items = json.MediaContainer.Directory;
+			attachUriOnDirectories(url, items);
+
 			result = {
 				attributes: json.MediaContainer.attributes,
 				directories: json.MediaContainer.Directory
@@ -32,6 +36,17 @@ PlexAPI.prototype.query = function(url, callback) {
 		callback(err, result);
 	});
 };
+
+function attachUriOnDirectories(url, directories) {
+	directories.forEach(function(directory) {
+		var parentUrl = url;
+		if (parentUrl[parentUrl.length - 1] !== "/") {
+			parentUrl += "/";
+		}
+
+		directory.uri = parentUrl + directory.attributes.key;
+	});
+}
 
 PlexAPI.prototype.perform = function(relativeUrl, callback) {
 	var url;
@@ -50,6 +65,41 @@ PlexAPI.prototype.perform = function(relativeUrl, callback) {
 		callback(err);
 	});
 };
+
+PlexAPI.prototype.find = function(relativeUrl) {
+	var criterias = (arguments.length > 2) ? arguments[1] : {};
+	var callback = Array.prototype.slice.call(arguments, -1)[0];
+
+	if (relativeUrl === undefined) {
+		throw new TypeError("Requires url argument");
+	}
+	if (typeof callback !== "function") {
+		throw new TypeError("Requires callback argument");
+	}
+
+	this.query(relativeUrl, function(err, result) {
+		var allDirectories = result ? result.directories : [];
+		var directories = filterDirectories(allDirectories, criterias);
+		callback(err, directories);
+	});
+};
+
+function filterDirectories(directories, criterias) {
+	return directories.filter(function(directory) {
+		var isMatch = true;
+		var rule;
+		
+		for (rule in criterias) {
+			if (!criterias.hasOwnProperty(rule)) { continue; }
+			if (directory.attributes[rule] !== criterias[rule]) {
+				isMatch = false;
+				break;
+			}
+		}
+
+		return isMatch;
+	});
+}
 
 function retrieveJsonFromUrl(relativeUrl, callback) {
 	var url = generateRelativeUrl.call(this, relativeUrl);

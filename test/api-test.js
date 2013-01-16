@@ -84,7 +84,21 @@ buster.testCase("API module", {
 				assert(result.directories.length === 2);
 				done();
 			});
-		}
+		},
+
+		"should provide an uri property on Directory items": function(done) {
+			this.api.query(ROOT_URL, function(err, result) {
+				assert.defined(result.directories[0].uri);
+				done();
+			});
+		},
+
+		"should provide an uri property on Directory items combined of parent's URI and the item's key attribute": function(done) {
+			this.api.query("/library/sections", function(err, result) {
+				assert.equals("/library/sections/1", result.directories[0].uri);
+				done();
+			});
+		},		
 	},
 
 	"perform()": {
@@ -115,6 +129,39 @@ buster.testCase("API module", {
 		"second parameter should be true when request response status code is 200": function(done) {
 			this.api.perform(PERFORM_URL, function(err, successfull) {
 				assert(successfull);
+				done();
+			});
+		}
+	},
+
+	"find()": {
+		"method exists": function() {
+			assert.isFunction(this.api.find);
+		},
+
+		"requires url parameter": function() {
+			assert.exception(function() {
+				this.api.find();
+			}, "TypeError");
+		},
+
+		"requires callback parameter": function() {
+			assert.exception(function() {
+				this.api.find("/");
+			}, "TypeError");
+		},
+
+		"should provide all Directory items found": function(done) {
+			this.api.find("/library/sections", function(err, directories) {
+				assert.isArray(directories);
+				assert.equals(directories.length, 3);
+				done();
+			});
+		},
+
+		"should filter directories when given an object of critierias as second parameter": function(done) {
+			this.api.find("/library/sections", {type: "movie"}, function(err, directories) {
+				assert.equals(directories.length, 2);
 				done();
 			});
 		}
