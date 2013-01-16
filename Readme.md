@@ -13,7 +13,7 @@ var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
 client.query("/", function (error, result) {
-	if (err) {
+	if (error) {
 		throw new Error("Could not connect to server");
 	}
 
@@ -22,7 +22,7 @@ client.query("/", function (error, result) {
 });
 ```
 
-**perform() : Perform library update of section of key "1"**
+**perform() : Perform an API action**
 
 When performing an "action" on the HTTP API, the response body will be empty.
 As the response content itself will be worthless, perform() acts on the HTTP status codes the server responds with.
@@ -31,12 +31,13 @@ As the response content itself will be worthless, perform() acts on the HTTP sta
 var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
-client.perform("/library/sections/1/refresh", function (error, result) {
-	if (err) {
+// update library section of key "1"
+client.perform("/library/sections/1/refresh", function (error, isSuccess) {
+	if (error) {
 		throw new Error("Could not connect to server");
 	}
 
-	if (result) {
+	if (isSuccess) {
 		// successfully started to refresh library section #1
 	}
 });
