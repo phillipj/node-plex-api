@@ -61,21 +61,21 @@ buster.testCase("query()", {
 
 	"should have response Directory items as result.directories": function(done) {
 		this.api.query(ROOT_URL, function(err, result) {
-			assert(result.directories.length === 2);
+			assert(result.directory.length === 2);
 			done();
 		});
 	},
 
 	"should provide an uri property on Directory items": function(done) {
 		this.api.query(ROOT_URL, function(err, result) {
-			assert.defined(result.directories[0].uri);
+			assert.defined(result.directory[0].uri);
 			done();
 		});
 	},
 
 	"should provide an uri property on Directory items combined of parent's URI and the item's key attribute": function(done) {
 		this.api.query("/library/sections", function(err, result) {
-			assert.equals("/library/sections/1", result.directories[0].uri);
+			assert.equals("/library/sections/1", result.directory[0].uri);
 			done();
 		});
 	}

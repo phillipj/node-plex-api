@@ -19,8 +19,8 @@ client.query("/", function (error, result) {
 	}
 
 	result.attributes; // MediaContainer attributes
-	result.directories; // array of Directory items
-						// all directories will have the .uri-attribute created / attached
+	result.directory; // array of Directory items
+										// all directories will have the .uri-attribute attached
 });
 ```
 
@@ -45,7 +45,7 @@ client.perform("/library/sections/1/refresh", function (error, isSuccess) {
 });
 ```
 
-**find(uri, [{criterias}], callback) : Find matching Directory items on URI**
+**find(uri, [{criterias}], callback) : Find matching child items on URI**
 
 Uses the .query() behind the scenes, giving all directories the beloved .uri-attribute.
 
@@ -74,6 +74,11 @@ client.find("/", function (error, directories) {
 
 ## HTTP API Documentation
 For more information about the API capabilities, see the [HTTP/API Control description](http://wiki.plexapp.com/index.php/HTTP_API/Control) at plexapp.com
+
+## Changelog
+
+### v0.2.0
+- **important** Removed explicit XML to JSON conversion to ensure consistent child item names. The main difference for those using previous module versions, is the need to change their use of result.directories to result.directory.
 
 ## License
 (The MIT License)

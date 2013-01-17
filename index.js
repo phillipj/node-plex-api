@@ -19,18 +19,9 @@ PlexAPI.prototype.query = function(url, callback) {
 		throw new TypeError("Requires callback argument");
 	}
 
-	retrieveJsonFromUrl.call(this, url, function(err, json) {
-		var result;
-		var items;
-
+	retrieveJsonFromUrl.call(this, url, function(err, result) {
 		if (!err) {
-			items = json.MediaContainer.Directory;
-			attachUriOnDirectories(url, items);
-
-			result = {
-				attributes: json.MediaContainer.attributes,
-				directories: json.MediaContainer.Directory
-			};
+			attachUriOnDirectories(url, result.directory);
 		}
 
 		callback(err, result);
@@ -68,7 +59,7 @@ PlexAPI.prototype.perform = function(relativeUrl, callback) {
 
 PlexAPI.prototype.find = function(relativeUrl) {
 	var criterias = (arguments.length > 2) ? arguments[1] : {};
-	var callback = Array.prototype.slice.call(arguments, -1)[0];
+	var callback = arguments[arguments.length - 1];
 
 	if (relativeUrl === undefined) {
 		throw new TypeError("Requires url argument");
@@ -78,7 +69,7 @@ PlexAPI.prototype.find = function(relativeUrl) {
 	}
 
 	this.query(relativeUrl, function(err, result) {
-		var allDirectories = result ? result.directories : [];
+		var allDirectories = result ? result.directory : [];
 		var directories = filterDirectories(allDirectories, criterias);
 		callback(err, directories);
 	});
@@ -115,8 +106,11 @@ function retrieveJsonFromUrl(relativeUrl, callback) {
 }
 
 function convertXmlToJson(xml, callback) {
-	var parser = new xml2json.Parser({ attrkey: "attributes" });
-	parser.parseString(xml, function(err, result) {
+	new xml2json.Parser({
+		attrkey: "attributes",
+		explicitRoot: false,
+		normalizeTags: true
+	}).parseString(xml, function(err, result) {
 		callback(err, result);
 	});
 }
