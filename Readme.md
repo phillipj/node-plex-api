@@ -18,9 +18,9 @@ client.query("/", function (error, result) {
 		throw new Error("Could not connect to server");
 	}
 
-	result.attributes; // MediaContainer attributes
-	result.directory; // array of Directory items
-			  // all directory-items will have the .uri-attribute attached
+	result.attributes; 	// MediaContainer attributes
+	result.directory; 	// array of child Directory items
+						// all directory-items will have the .uri-attribute attached
 });
 ```
 
