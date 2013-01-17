@@ -7,7 +7,7 @@ Translates the XML given from the server to JSON.
 
 **query(uri, callback) : Retrieve content from URI**
 
-Aside from translating all XML properties into JSON properties, a .uri-attribute are created to easier follow the URIs available in the HTTP API.
+Aside from translating all XML properties into JSON properties, a .uri-attribute are created to easier follow the URIs available in the HTTP API. At the moment URIs are attached for Directory and Server items.
 
 ```js
 var PlexAPI = require("plex-api");
@@ -76,6 +76,10 @@ client.find("/", function (error, directories) {
 For more information about the API capabilities, see the [HTTP/API Control description](http://wiki.plexapp.com/index.php/HTTP_API/Control) at plexapp.com
 
 ## Changelog
+
+### v0.2.1
+- Generalized URI resolving as bugfix for other types of items than Directories
+- Added URIs for Server items
 
 ### v0.2.0
 - **important** Removed explicit XML to JSON conversion to ensure consistent child item names. The main difference for those using previous module versions, is the need to change their use of result.directories to result.directory.
