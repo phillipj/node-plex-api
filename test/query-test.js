@@ -2,7 +2,7 @@ var buster = require("buster");
 var server = require("./server");
 
 var ROOT_URL = "/";
-var PERFORM_URL = "/library/sections/1/refresh";
+var CLIENTS_URL = "/clients";
 
 var PlexAPI = require("..");
 
@@ -66,17 +66,35 @@ buster.testCase("query()", {
 		});
 	},
 
-	"should provide an uri property on Directory items": function(done) {
-		this.api.query(ROOT_URL, function(err, result) {
-			assert.defined(result.directory[0].uri);
-			done();
-		});
+	"Directory URI": {
+		"should provide an uri property": function(done) {
+			this.api.query(ROOT_URL, function(err, result) {
+				assert.defined(result.directory[0].uri);
+				done();
+			});
+		},
+
+		"should provide an uri property combined of parent's URI and the item's key attribute": function(done) {
+			this.api.query("/library/sections", function(err, result) {
+				assert.equals(result.directory[0].uri, "/library/sections/1");
+				done();
+			});
+		}
 	},
 
-	"should provide an uri property on Directory items combined of parent's URI and the item's key attribute": function(done) {
-		this.api.query("/library/sections", function(err, result) {
-			assert.equals("/library/sections/1", result.directory[0].uri);
-			done();
-		});
+	"Server URI": {
+		"should provide an uri property": function(done) {
+			this.api.query(CLIENTS_URL, function(err, result) {
+				assert.defined(result.server[0].uri);
+				done();
+			});
+		},
+
+		"should provide uri property used to control Plex application": function(done) {
+			this.api.query(CLIENTS_URL, function(err, result) {
+				assert.equals(result.server[0].uri, "/system/players/192.168.0.2");
+				done();
+			});			
+		}
 	}
 });
