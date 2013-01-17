@@ -20,7 +20,7 @@ client.query("/", function (error, result) {
 
 	result.attributes; // MediaContainer attributes
 	result.directory; // array of Directory items
-										// all directories will have the .uri-attribute attached
+			  // all directory-items will have the .uri-attribute attached
 });
 ```
 
