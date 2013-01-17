@@ -11,7 +11,9 @@ var server = http.createServer(function(req, res) {
 		return res.end();
 	} else if (req.url === "/library/sections") {
 		sampleFilename = "library_sections";
-	} 
+	}  else if (req.url === "/clients") { 
+		sampleFilename = "clients";
+	}
 
 	deliverXml(sampleFilename, res);
 });
