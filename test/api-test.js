@@ -23,7 +23,17 @@ buster.testCase("Module API", {
 	},
 
 	"should be instance of the PlexAPI": function() {
-		assert(this.api instanceof PlexAPI);
+		assert.equals(this.api.constructor.name, "PlexAPI");
+	},
+
+	"should require server host as first constructor parameter": function() {
+		assert.exception(function() {
+			new PlexAPI();
+		}, "TypeError");
+	},
+
+	"first parameter should set host of Plex Media Server": function() {
+		assert.equals(this.api.getHostname(), "localhost");
 	},
 
 	"should have configurable server port": function(done) {
