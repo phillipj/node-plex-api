@@ -47,5 +47,13 @@ buster.testCase("find()", {
 			assert.equals(directories.length, 2);
 			done();
 		});
+	},
+
+	"should provide all Server items found": function(done) {
+		this.api.find("/clients", function(err, clients) {
+			var firstServer = clients[0];
+			assert.equals(firstServer.attributes.name, "mac-mini");
+			done();
+		});
 	}
 });
