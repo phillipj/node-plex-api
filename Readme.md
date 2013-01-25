@@ -77,6 +77,9 @@ For more information about the API capabilities, see the [HTTP/API Control descr
 
 ## Changelog
 
+### v0.2.2
+- Bugfix for .find() only working when having Directory items
+
 ### v0.2.1
 - Generalized URI resolving as bugfix for other types of items than Directories
 - Added URIs for Server items
