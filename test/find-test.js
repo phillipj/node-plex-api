@@ -34,7 +34,7 @@ buster.testCase("find()", {
 		}, "TypeError");
 	},
 
-	"should provide all Directory items found": function(done) {
+	"should provide all child items found": function(done) {
 		this.api.find("/library/sections", function(err, directories) {
 			assert.isArray(directories);
 			assert.equals(directories.length, 3);
@@ -42,9 +42,16 @@ buster.testCase("find()", {
 		});
 	},
 
-	"should filter directories when given an object of critierias as second parameter": function(done) {
+	"should filter items when given an object of criterias as second parameter": function(done) {
 		this.api.find("/library/sections", {type: "movie"}, function(err, directories) {
 			assert.equals(directories.length, 2);
+			done();
+		});
+	},
+
+	"should match item attributes by regular expression": function(done) {
+		this.api.find("/library/sections", {type: "movie|show"}, function(err, directories) {
+			assert.equals(directories.length, 3);
 			done();
 		});
 	},
