@@ -62,6 +62,15 @@ client.find("/library/sections", {type: "movie"}, function (error, directories) 
 	// directories would be an array of sections whose type are "movie"
 });
 
+// criterias are interpreted as regular expressions
+client.find("/library/sections", {type: "movie|shows"}, function (error, directories) {
+	if (error) {
+		throw new Error("Could not connect to server");
+	}
+
+	// directories type would be "movie" OR "shows"
+});
+
 // shorthand to retrieve all Directories
 client.find("/", function (error, directories) {
 	if (error) {
@@ -76,6 +85,11 @@ client.find("/", function (error, directories) {
 For more information about the API capabilities, see the [HTTP/API Control description](http://wiki.plexapp.com/index.php/HTTP_API/Control) at plexapp.com
 
 ## Changelog
+
+### v0.2.3
+- .find() matches attribute values by regular expression
+- Added getters for hostname and port
+- Made constructor hostname parameter required
 
 ### v0.2.2
 - Bugfix for .find() only working when having Directory items
