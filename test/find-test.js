@@ -1,4 +1,4 @@
-var buster = require("buster");
+var expect = require('expect.js');
 var server = require("./server");
 
 var ROOT_URL = "/";
@@ -6,61 +6,64 @@ var PERFORM_URL = "/library/sections/1/refresh";
 
 var PlexAPI = require("..");
 
-buster.testCase("find()", {
-	setUp: function() {
-		server.start();
-		this.api = new PlexAPI("localhost");
-	},
+describe("find()", function() {
+	var api;
 
-	tearDown: function() {
+	beforeEach(function() {
+		server.start();
+
+		api = new PlexAPI("localhost");
+	});
+
+	afterEach(function() {
 		try {
 			server.stop();
 		} catch (ignoredException) {}
-	},
+	});
 
-	"method exists": function() {
-		assert.isFunction(this.api.find);
-	},
+	it("should exist", function() {
+		expect(api.find).to.be.a('function');
+	});
 
-	"requires url parameter": function() {
-		assert.exception(function() {
-			this.api.find();
-		}, "TypeError");
-	},
+	it("requires url parameter", function() {
+		expect(function() {
+			api.find();
+		}).to.throwException("TypeError");
+	});
 
-	"requires callback parameter": function() {
-		assert.exception(function() {
-			this.api.find("/");
-		}, "TypeError");
-	},
+	it("requires callback parameter", function() {
+		expect(function() {
+			api.find("/");
+		}).to.throwException("TypeError");
+	});
 
-	"should provide all child items found": function(done) {
-		this.api.find("/library/sections", function(err, directories) {
-			assert.isArray(directories);
-			assert.equals(directories.length, 3);
+	it("should provide all child items found", function(done) {
+		api.find("/library/sections", function(err, directories) {
+			expect(directories).to.be.an('array');
+			expect(directories.length).to.be(3);
 			done();
 		});
-	},
+	});
 
-	"should filter items when given an object of criterias as second parameter": function(done) {
-		this.api.find("/library/sections", {type: "movie"}, function(err, directories) {
-			assert.equals(directories.length, 2);
+	it("should filter items when given an object of criterias as second parameter", function(done) {
+		api.find("/library/sections", {type: "movie"}, function(err, directories) {
+			expect(directories.length).to.be(2);
 			done();
 		});
-	},
+	});
 
-	"should match item attributes by regular expression": function(done) {
-		this.api.find("/library/sections", {type: "movie|show"}, function(err, directories) {
-			assert.equals(directories.length, 3);
+	it("should match item attributes by regular expression", function(done) {
+		api.find("/library/sections", {type: "movie|show"}, function(err, directories) {
+			expect(directories.length).to.be(3);
 			done();
 		});
-	},
+	});
 
-	"should provide all Server items found": function(done) {
-		this.api.find("/clients", function(err, clients) {
+	it("should provide all Server items found", function(done) {
+		api.find("/clients", function(err, clients) {
 			var firstServer = clients[0];
-			assert.equals(firstServer.attributes.name, "mac-mini");
+			expect(firstServer.attributes.name).to.be("mac-mini");
 			done();
 		});
-	}
+	});
 });

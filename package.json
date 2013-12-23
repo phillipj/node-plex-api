@@ -11,10 +11,11 @@
     "xml2js": "~0.2.2"
   },
   "devDependencies": {
-    "buster": "0.6.x"
+    "expect.js": "*",
+    "mocha": "*"
   },
   "scripts": {
-    "test": "buster test"
+    "test": "make test"
   },
   "repository": "git://github.com/phillipj/node-plex-api",
   "keywords": [

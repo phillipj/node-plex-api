@@ -1,4 +1,4 @@
-var buster = require("buster");
+var expect = require('expect.js');
 var server = require("./server");
 
 var ROOT_URL = "/";
@@ -6,44 +6,47 @@ var PERFORM_URL = "/library/sections/1/refresh";
 
 var PlexAPI = require("..");
 
-buster.testCase("Module API", {
-	setUp: function() {
-		server.start();
-		this.api = new PlexAPI("localhost");
-	},
+describe("Module API", function() {
+	var api;
 
-	tearDown: function() {
+	beforeEach(function() {
+		server.start();
+
+		api = new PlexAPI("localhost");
+	});
+
+	afterEach(function() {
 		try {
 			server.stop();
 		} catch (ignoredException) {}
-	},
+	});
 
-	"module exposes constructor": function() {
-		assert.isFunction(PlexAPI);
-	},
+	it("should expose constructor", function() {
+		expect(PlexAPI).to.be.a('function');
+	});
 
-	"should be instance of the PlexAPI": function() {
-		assert.equals(this.api.constructor.name, "PlexAPI");
-	},
+	it("should be instance of the PlexAPI", function() {
+		expect("PlexAPI").to.be(api.constructor.name);
+	});
 
-	"should require server host as first constructor parameter": function() {
-		assert.exception(function() {
+	it("should require server host as first constructor parameter", function() {
+		expect(function() {
 			new PlexAPI();
-		}, "TypeError");
-	},
+		}).to.throwException("TypeError");
+	});
 
-	"first parameter should set host of Plex Media Server": function() {
-		assert.equals(this.api.getHostname(), "localhost");
-	},
+	it("first parameter should set host of Plex Media Server", function() {
+		expect(api.getHostname()).to.be("localhost");
+	});
 
-	"should have configurable server port": function(done) {
-		this.api = new PlexAPI("localhost", 32401);
+	it("should have configurable server port", function(done) {
+		api = new PlexAPI("localhost", 32401);
 		server.stop();
 		server.start(32401);
 
-		this.api.query(ROOT_URL, function(err, result) {
-			assert.isObject(result);
+		api.query(ROOT_URL, function(err, result) {
+			expect(result).to.be.an('object');
 			done();
 		});
-	}
+	});
 });

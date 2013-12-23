@@ -1,4 +1,4 @@
-var buster = require("buster");
+var expect = require('expect.js');
 var server = require("./server");
 
 var ROOT_URL = "/";
@@ -6,46 +6,49 @@ var PERFORM_URL = "/library/sections/1/refresh";
 
 var PlexAPI = require("..");
 
-buster.testCase("perform()", {
-	setUp: function() {
-		server.start();
-		this.api = new PlexAPI("localhost");
-	},
+describe("perform()", function() {
+	var api;
 
-	tearDown: function() {
+	beforeEach(function() {
+		server.start();
+
+		api = new PlexAPI("localhost");
+	});
+
+	afterEach(function() {
 		try {
 			server.stop();
 		} catch (ignoredException) {}
-	},
+	});
 
-	"method exists": function() {
-		assert.isFunction(this.api.perform);
-	},
+	it("should exist", function() {
+		expect(api.perform).to.be.a('function');
+	});
 
-	"requires url parameter": function() {
-		assert.exception(function() {
-			this.api.perform();
-		}, "TypeError");
-	},
+	it("requires url parameter", function() {
+		expect(function() {
+			api.perform();
+		}).to.throwException("TypeError");
+	});
 
-	"requires callback parameter": function() {
-		assert.exception(function() {
-			this.api.perform(ROOT_URL);
-		}, "TypeError");
-	},
+	it("requires callback parameter", function() {
+		expect(function() {
+			api.perform(ROOT_URL);
+		}).to.throwException("TypeError");
+	});
 
-	"should provide an error object as first parameter when not able to connect to server": function(done) {
+	it("should provide an error object as first parameter when not able to connect to server", function(done) {
 		server.stop();
-		this.api.perform(PERFORM_URL, function(err, successfull) {
-			refute.isNull(err);
+		api.perform(PERFORM_URL, function(err, successfull) {
+			expect(err).not.to.be(null);
 			done();
 		});
-	},
+	});
 
-	"second parameter should be true when request response status code is 200": function(done) {
-		this.api.perform(PERFORM_URL, function(err, successfull) {
-			assert(successfull);
+	it("second parameter should be true when request response status code is 200", function(done) {
+		api.perform(PERFORM_URL, function(err, successfull) {
+			expect(successfull).to.be(true);
 			done();
 		});
-	}
+	});
 });

@@ -1,4 +1,4 @@
-var buster = require("buster");
+var expect = require('expect.js');
 var server = require("./server");
 
 var ROOT_URL = "/";
@@ -6,95 +6,96 @@ var CLIENTS_URL = "/clients";
 
 var PlexAPI = require("..");
 
-buster.testCase("query()", {
-	setUp: function() {
-		server.start();
-		this.api = new PlexAPI("localhost");
-	},
+describe("query()", function() {
+	var api;
 
-	tearDown: function() {
+	beforeEach(function() {
+		server.start();
+
+		api = new PlexAPI("localhost");
+	});
+
+	afterEach(function() {
 		try {
 			server.stop();
 		} catch (ignoredException) {}
-	},
+	});
 
-	"method exists": function() {
-		assert.isFunction(this.api.query);
-	},
+	it("should exist", function() {
+		expect(api.query).to.be.a('function');
+	});
 
-	"requires url parameter": function() {
-		assert.exception(function() {
-			this.api.query();
-		}, "TypeError");
-	},
+	it("requires url parameter", function() {
+		expect(function() {
+			api.query();
+		}).to.throwException("TypeError");
+	});
 
-	"requires callback parameter": function() {
-		assert.exception(function() {
-			this.api.query(ROOT_URL);
-		}, "TypeError");
-	},
+	it("requires callback parameter", function() {
+		expect(function() {
+			api.query(ROOT_URL);
+		}).to.throwException("TypeError");
+	});
 
-	"should provide error as first argument to callback when unable to connect": function(done) {
+	it("should provide error as first argument to callback when unable to connect", function(done) {
 		server.stop();
-		this.api.query(ROOT_URL, function(err) {
-			refute.isNull(err);
+		api.query(ROOT_URL, function(err) {
+			expect(err).not.to.be(null);
 			done();
 		});
-	},
+	});
 
-	"should not have an error argument when server responds": function(done) {
-		this.api.query(ROOT_URL, function(err, result) {
-			assert.isNull(err);
-			assert.isObject(result);
+	it("should not have an error argument when server responds", function(done) {
+		api.query(ROOT_URL, function(err, result) {
+			expect(err).to.be(null);
+			expect(result).to.be.an('object');
 			done();
 		});
-	},
+	});
 
-	"should have response MediaContainer attributes as result.attributes": function(done) {
-		this.api.query(ROOT_URL, function(err, result) {
-			assert.match(result, { attributes: {
-				version: '0.9.7'
-			}});
+	it("should have response MediaContainer attributes as result.attributes", function(done) {
+		api.query(ROOT_URL, function(err, result) {
+			expect(result.attributes.version).to.contain('0.9.7');
 			done();
 		});
-	},
+	});
 
-	"should have response Directory items as result.directories": function(done) {
-		this.api.query(ROOT_URL, function(err, result) {
-			assert(result.directory.length === 2);
+	it("should have response Directory items as result.directories", function(done) {
+		api.query(ROOT_URL, function(err, result) {
+			expect(result.directory.length).to.be(2);
 			done();
 		});
-	},
+	});
 
-	"Directory URI": {
-		"should provide an uri property": function(done) {
-			this.api.query(ROOT_URL, function(err, result) {
-				assert.defined(result.directory[0].uri);
+	describe("Directory URI", function() {
+		it("should provide an uri property", function(done) {
+			api.query(ROOT_URL, function(err, result) {
+				expect(result.directory[0].uri).not.to.be(undefined);
 				done();
 			});
-		},
+		});
 
-		"should provide an uri property combined of parent's URI and the item's key attribute": function(done) {
-			this.api.query("/library/sections", function(err, result) {
-				assert.equals(result.directory[0].uri, "/library/sections/1");
+		it("should provide an uri property combined of parent's URI and the item's key attribute", function(done) {
+			api.query("/library/sections", function(err, result) {
+				expect(result.directory[0].uri).to.be("/library/sections/1");
 				done();
 			});
-		}
-	},
+		});
+	});
 
-	"Server URI": {
-		"should provide an uri property": function(done) {
-			this.api.query(CLIENTS_URL, function(err, result) {
-				assert.defined(result.server[0].uri);
+	describe("Server URI", function() {
+		it("should provide an uri property", function(done) {
+			api.query(CLIENTS_URL, function(err, result) {
+				expect(result.server[0].uri).not.to.be(undefined);
 				done();
 			});
-		},
+		});
 
-		"should provide uri property used to control Plex application": function(done) {
-			this.api.query(CLIENTS_URL, function(err, result) {
-				assert.equals(result.server[0].uri, "/system/players/192.168.0.2");
+		it("should provide uri property used to control Plex application", function(done) {
+			api.query(CLIENTS_URL, function(err, result) {
+				expect(result.server[0].uri).to.be("/system/players/192.168.0.2");
 				done();
-			});			
-		}
-	}
+			});
+		});
+	});
 });
