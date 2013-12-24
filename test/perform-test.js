@@ -31,24 +31,15 @@ describe("perform()", function() {
 		}).to.throwException("TypeError");
 	});
 
-	it("requires callback parameter", function() {
-		expect(function() {
-			api.perform(ROOT_URL);
-		}).to.throwException("TypeError");
-	});
-
-	it("should provide an error object as first parameter when not able to connect to server", function(done) {
+	it("promise should fail when not able to connect to server", function(done) {
 		server.stop();
-		api.perform(PERFORM_URL, function(err, successfull) {
+		api.perform(PERFORM_URL).fail(function(err) {
 			expect(err).not.to.be(null);
 			done();
 		});
 	});
 
-	it("second parameter should be true when request response status code is 200", function(done) {
-		api.perform(PERFORM_URL, function(err, successfull) {
-			expect(successfull).to.be(true);
-			done();
-		});
+	it("promise should succeed when request response status code is 200", function(done) {
+		api.perform(PERFORM_URL).then(done);
 	});
 });

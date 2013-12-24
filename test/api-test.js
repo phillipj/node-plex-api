@@ -44,7 +44,7 @@ describe("Module API", function() {
 		server.stop();
 		server.start(32401);
 
-		api.query(ROOT_URL, function(err, result) {
+		api.query(ROOT_URL).then(function(result) {
 			expect(result).to.be.an('object');
 			done();
 		});
