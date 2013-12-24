@@ -5,7 +5,7 @@ Translates the XML given from the server to JSON.
 
 ## Usage
 
-**query(uri, callback) : Retrieve content from URI**
+**query(uri) : Retrieve content from URI**
 
 Aside from translating all XML properties into JSON properties, a .uri-attribute are created to easier follow the URIs available in the HTTP API. At the moment URIs are attached for Directory and Server items.
 
@@ -13,18 +13,16 @@ Aside from translating all XML properties into JSON properties, a .uri-attribute
 var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
-client.query("/", function (error, result) {
-	if (error) {
-		throw new Error("Could not connect to server");
-	}
-
+client.query("/").then(function (result) {
 	result.attributes; 	// MediaContainer attributes
 	result.directory; 	// array of child Directory items
 						// all directory-items will have the .uri-attribute attached
+}, function (err) {
+	throw new Error("Could not connect to server");
 });
 ```
 
-**perform(uri, callback) : Perform an API action**
+**perform(uri) : Perform an API action**
 
 When performing an "action" on the HTTP API, the response body will be empty.
 As the response content itself will be worthless, perform() acts on the HTTP status codes the server responds with.
@@ -34,18 +32,14 @@ var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
 // update library section of key "1"
-client.perform("/library/sections/1/refresh", function (error, isSuccess) {
-	if (error) {
-		throw new Error("Could not connect to server");
-	}
-
-	if (isSuccess) {
-		// successfully started to refresh library section #1
-	}
+client.perform("/library/sections/1/refresh").then(function () {
+	// successfully started to refresh library section #1
+}, function (err) {
+	throw new Error("Could not connect to server");
 });
 ```
 
-**find(uri, [{criterias}], callback) : Find matching child items on URI**
+**find(uri, [{criterias}]) : Find matching child items on URI**
 
 Uses the .query() behind the scenes, giving all directories the beloved .uri-attribute.
 
@@ -54,30 +48,24 @@ var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
 // filter directories on Directory attributes
-client.find("/library/sections", {type: "movie"}, function (error, directories) {
-	if (error) {
-		throw new Error("Could not connect to server");
-	}
-
+client.find("/library/sections", {type: "movie"}).then(function (directories) {
 	// directories would be an array of sections whose type are "movie"
+}, function (err) {
+	throw new Error("Could not connect to server");
 });
 
 // criterias are interpreted as regular expressions
-client.find("/library/sections", {type: "movie|shows"}, function (error, directories) {
-	if (error) {
-		throw new Error("Could not connect to server");
-	}
-
+client.find("/library/sections", {type: "movie|shows"}).then(function (directories) {
 	// directories type would be "movie" OR "shows"
+}, function (err) {
+	throw new Error("Could not connect to server");
 });
 
 // shorthand to retrieve all Directories
-client.find("/", function (error, directories) {
-	if (error) {
-		throw new Error("Could not connect to server");
-	}
-
+client.find("/").then(function (directories) {
 	// directories would be an array of Directory items
+}, function (err) {
+	throw new Error("Could not connect to server");
 });
 ```
 
@@ -85,6 +73,10 @@ client.find("/", function (error, directories) {
 For more information about the API capabilities, see the [HTTP/API Control description](http://wiki.plexapp.com/index.php/HTTP_API/Control) at plexapp.com
 
 ## Changelog
+
+### v0.4.0
+- Converted all methods to return promises, rather than accepting callback as argument
+- Converted buster tests to mocha/expect.js
 
 ### v0.2.3
 - .find() matches attribute values by regular expression
