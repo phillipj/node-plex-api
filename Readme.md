@@ -72,7 +72,20 @@ client.find("/").then(function (directories) {
 ## HTTP API Documentation
 For more information about the API capabilities, see the [HTTP/API Control description](http://wiki.plexapp.com/index.php/HTTP_API/Control) at plexapp.com
 
+## Running tests
+```shell
+$ make test
+```
+
+Or auto run tests while writing code
+```shell
+$ make tdd
+```
+
 ## Changelog
+
+### v0.4.1
+- Bugfix for not releasing HTTP agent sockets properly on .perform()
 
 ### v0.4.0
 - Converted all methods to return promises, rather than accepting callback as argument
