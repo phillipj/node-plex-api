@@ -70,7 +70,7 @@ client.find("/").then(function (directories) {
 ```
 
 ## HTTP API Documentation
-For more information about the API capabilities, see the [HTTP/API Control description](http://wiki.plexapp.com/index.php/HTTP_API/Control) at plexapp.com
+For more information about the API capabilities, see the [HTTP/API Control description](https://oldwiki.plexapp.com/index.php?title=HTTP_API/Control) at plexapp.com
 
 ## Running tests
 ```shell
@@ -109,7 +109,7 @@ $ make tdd
 ## License
 (The MIT License)
 
-Copyright (c) 2013 Phillip Johnsen &lt;phillip@lightweight.no&gt;
+Copyright (c) 2013-2014 Phillip Johnsen &lt;phillip@lightweight.no&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
