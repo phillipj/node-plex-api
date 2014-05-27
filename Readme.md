@@ -81,6 +81,9 @@ Or auto run tests while writing code
 ```shell
 $ make tdd
 ```
+## Contributing
+
+Contributions are more than welcome! Create an issue describing what you want to do. If that feature is seen to fit this project, send a pull request with the changes accompanied by tests.
 
 ## Changelog
 
