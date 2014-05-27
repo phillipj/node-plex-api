@@ -18,6 +18,7 @@
   "scripts": {
     "test": "make test"
   },
+  "files": ["lib"],
   "repository": "git://github.com/phillipj/node-plex-api",
   "keywords": [
     "plex",
