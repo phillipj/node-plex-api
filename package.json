@@ -7,9 +7,9 @@
     "test": "test"
   },
   "dependencies": {
-    "request": "^2.36.0",
-    "xml2js": "^0.4.3",
-    "q": "^1.0.1"
+    "q": "~1.1.2",
+    "request": "~2.36.0",
+    "xml2js": "~0.4.3"
   },
   "devDependencies": {
     "expect.js": "*",
