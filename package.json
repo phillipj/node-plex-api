@@ -16,7 +16,7 @@
     "mocha": "*"
   },
   "scripts": {
-    "test": "make test"
+    "test": "mocha --reporter list test/*-test.js"
   },
   "files": [
     "lib"
