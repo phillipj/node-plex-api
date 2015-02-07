@@ -87,6 +87,11 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v1.0.0
+v1.0.0 mostly to be a better semver citizen.
+
+- Updated dependencies and housekeeping
+
 ### v0.4.2
 - Updated dependencies
 - Housekeeping with some minor code refactor
