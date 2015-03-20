@@ -1,22 +1,25 @@
 # plex-api [![Build Status](https://api.travis-ci.org/phillipj/node-plex-api.png)](http://travis-ci.org/phillipj/node-plex-api)
 
-Small module used to query the Plex Media Server HTTP API.
-Translates the XML given from the server to JSON.
+Small module which helps you query the Plex Media Server HTTP API.
 
 ## Usage
 
 **query(uri) : Retrieve content from URI**
 
-Aside from translating all XML properties into JSON properties, a .uri-attribute are created to easier follow the URIs available in the HTTP API. At the moment URIs are attached for Directory and Server items.
+Aside from requesting the API and returning its response, an `.uri` property are created to easier follow the URIs available in the HTTP API. At the moment URIs are attached for Directory and Server items.
 
 ```js
 var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
 client.query("/").then(function (result) {
-	result.attributes; 	// MediaContainer attributes
-	result.directory; 	// array of child Directory items
-						// all directory-items will have the .uri-attribute attached
+	console.log("%s running Plex Media Server v%s",
+		result.friendlyName,
+		result.version);
+
+	// array of children, such as Directory or Server items
+	// will have the .uri-property attached
+	console.log(result._children);
 }, function (err) {
 	throw new Error("Could not connect to server");
 });
@@ -25,7 +28,7 @@ client.query("/").then(function (result) {
 **perform(uri) : Perform an API action**
 
 When performing an "action" on the HTTP API, the response body will be empty.
-As the response content itself will be worthless, perform() acts on the HTTP status codes the server responds with.
+As the response content itself is worthless, `perform()` acts on the HTTP status codes the server responds with.
 
 ```js
 var PlexAPI = require("plex-api");
@@ -41,7 +44,7 @@ client.perform("/library/sections/1/refresh").then(function () {
 
 **find(uri, [{criterias}]) : Find matching child items on URI**
 
-Uses the .query() behind the scenes, giving all directories the beloved .uri-attribute.
+Uses `query()` behind the scenes, giving all directories and servers the beloved `.uri` property.
 
 ```js
 var PlexAPI = require("plex-api");
@@ -74,18 +77,29 @@ For more information about the API capabilities, see the [HTTP/API Control descr
 
 ## Running tests
 ```shell
-$ make test
-```
-
-Or auto run tests while writing code
-```shell
-$ make tdd
+$ npm test
 ```
 ## Contributing
 
 Contributions are more than welcome! Create an issue describing what you want to do. If that feature is seen to fit this project, send a pull request with the changes accompanied by tests.
 
 ## Changelog
+
+### v2.0.0
+- Retrieves JSON from the Plex HTTP API instead of XML **see breaking changes below!**
+
+#### BREAKING CHANGES FROM v1.0.0 AND BELOW
+
+We're now retrieving JSON from the Plex HTTP API instead of XML, which got translated to JSON by this module. Direct consequences:
+- Attributes previously found in `result.attributes` are now available directly in `result`
+- Child items such as Directory and Server has moved from e.g. `result.directory` to `result._children`
+
+```js
+client.query("/").then(function (result) {
+	console.log(result.friendlyName); // was result.attributes.friendlyName
+	console.log("Directory count:", result._children.length); // was result.directory.length
+});
+```
 
 ### v1.0.0
 v1.0.0 mostly to be a better semver citizen and some housekeeping.
