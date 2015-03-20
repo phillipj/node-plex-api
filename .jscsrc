@@ -1,0 +1,18 @@
+{
+    "preset": "crockford",
+    "disallowDanglingUnderscores": null,
+    "requireMultipleVarDecl": null,
+    "requireSpaceAfterKeywords": [
+	    "do",
+	    "for",
+	    "if",
+	    "else",
+	    "switch",
+	    "case",
+	    "try",
+	    "catch",
+	    "while",
+	    "return",
+	    "typeof"
+	]
+}
