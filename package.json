@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "request": "^2.36.0",
-    "xml2js": "^0.4.3",
     "q": "^1.0.1"
   },
   "devDependencies": {

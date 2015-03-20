@@ -1,0 +1,60 @@
+{
+  "_elementType": "MediaContainer",
+  "allowSync": "0",
+  "identifier": "com.plexapp.plugins.library",
+  "mediaTagPrefix": "/system/bundle/media/flags/",
+  "mediaTagVersion": "1426798205",
+  "title1": "Plex Library",
+  "_children": [
+    {
+      "_elementType": "Directory",
+      "allowSync": "0",
+      "art": "/:/resources/movie-fanart.jpg",
+      "filters": "1",
+      "refreshing": "0",
+      "thumb": "/:/resources/movie.png",
+      "key": "1",
+      "type": "movie",
+      "title": "Movies",
+      "composite": "/library/sections/1/composite/1417268010",
+      "agent": "com.plexapp.agents.imdb",
+      "scanner": "Plex Movie Scanner",
+      "language": "en",
+      "uuid": "1209cc3c-1197-4280-ae3a-e9cc7382f01f",
+      "updatedAt": "1417268010",
+      "createdAt": "1417268009",
+      "_children": [
+        {
+          "_elementType": "Location",
+          "id": 1,
+          "path": "/Users/foobar/Movies"
+        }
+      ]
+    },
+    {
+      "_elementType": "Directory",
+      "allowSync": "0",
+      "art": "/:/resources/photo-fanart.jpg",
+      "filters": "1",
+      "refreshing": "0",
+      "thumb": "/:/resources/photo.png",
+      "key": "2",
+      "type": "photo",
+      "title": "Photos",
+      "composite": "/library/sections/2/composite/1417268080",
+      "agent": "com.plexapp.agents.none",
+      "scanner": "Plex Photo Scanner",
+      "language": "xn",
+      "uuid": "a190b7e6-9acd-48fc-a641-0440fc07658f",
+      "updatedAt": "1417268080",
+      "createdAt": "1417268080",
+      "_children": [
+        {
+          "_elementType": "Location",
+          "id": 2,
+          "path": "/Users/foobar/Downloads/Photos"
+        }
+      ]
+    }
+  ]
+}

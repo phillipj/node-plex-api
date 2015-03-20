@@ -1,0 +1,19 @@
+{
+  "_elementType": "MediaContainer",
+  "_children": [
+    {
+      "_elementType": "Server",
+      "name": "mac-mini",
+      "host": "192.168.0.47",
+      "address": "192.168.0.47",
+      "port": 3005,
+      "machineIdentifier": "66f7da37",
+      "version": "1.2.3.378-0c92ed32",
+      "protocol": "plex",
+      "product": "Plex Home Theater",
+      "deviceClass": "HTPC",
+      "protocolVersion": "1",
+      "protocolCapabilities": "navigation,playback,timeline,mirror,playqueues"
+    }
+  ]
+}

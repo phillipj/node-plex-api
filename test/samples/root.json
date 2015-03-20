@@ -1,0 +1,121 @@
+{
+  "_elementType": "MediaContainer",
+  "friendlyName": "iMac",
+  "machineIdentifier": "ccda04d6d8e157",
+  "multiuser": "1",
+  "myPlex": "1",
+  "myPlexMappingState": "unknown",
+  "myPlexSigninState": "unknown",
+  "myPlexSubscription": "0",
+  "myPlexUsername": "",
+  "platform": "MacOSX",
+  "platformVersion": "10.10.2",
+  "requestParametersInCookie": "1",
+  "sync": "1",
+  "transcoderActiveVideoSessions": "0",
+  "transcoderAudio": "1",
+  "transcoderVideo": "1",
+  "transcoderVideoBitrates": "64,96,208,320,720,1500,2000,3000,4000,8000,10000,12000,20000",
+  "transcoderVideoQualities": "0,1,2,3,4,5,6,7,8,9,10,11,12",
+  "transcoderVideoResolutions": "128,128,160,240,320,480,768,720,720,1080,1080,1080,1080",
+  "updatedAt": "1426800045",
+  "version": "0.9.11.4.739-a4e710f",
+  "_children": [
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "butler",
+      "title": "butler"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "channels",
+      "title": "channels"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "clients",
+      "title": "clients"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "hubs",
+      "title": "hubs"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "library",
+      "title": "library"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "music",
+      "title": "music"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "photos",
+      "title": "photos"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "playQueues",
+      "title": "playQueues"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "player",
+      "title": "player"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "playlists",
+      "title": "playlists"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "search",
+      "title": "search"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "servers",
+      "title": "servers"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "system",
+      "title": "system"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "transcode",
+      "title": "transcode"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "updater",
+      "title": "updater"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "2",
+      "key": "video",
+      "title": "video"
+    }
+  ]
+}
