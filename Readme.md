@@ -4,6 +4,20 @@ Small module which helps you query the Plex Media Server HTTP API.
 
 ## Usage
 
+**PlexAPI(options | hostname)**
+
+Instantiate a PlexAPI client.
+
+Options:
+- **hostname**: hostname where Plex Server runs
+- **port**: port number Plex Server is listening on (optional, default: 32400)
+- **username**: plex.tv username (optional / required for PlexHome)
+- **password**: plex.tv password (optional / required for PlexHome)
+
+If argument is a `string` it is used as the hostname.
+
+For those who has PlexHome enabled on their server, will have to specify their username and password used at plex.tv.
+
 **query(uri) : Retrieve content from URI**
 
 Aside from requesting the API and returning its response, an `.uri` property are created to easier follow the URIs available in the HTTP API. At the moment URIs are attached for Directory and Server items.
@@ -86,6 +100,8 @@ Contributions are more than welcome! Create an issue describing what you want to
 ## Changelog
 
 ### v2.0.0
+- PlexHome support
+- Deprecated port argument of PlexAPI constructor in favor of an options object
 - Retrieves JSON from the Plex HTTP API instead of XML **see breaking changes below!**
 
 #### BREAKING CHANGES FROM v1.0.0 AND BELOW

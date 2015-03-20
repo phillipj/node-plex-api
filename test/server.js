@@ -1,37 +1,70 @@
-var http = require('http');
 var fs = require('fs');
+var nock = require('nock');
 
 var PLEX_SERVER_PORT = 32400;
 
-var server = http.createServer(function(req, res) {
-	var sampleFilename = 'root';
+var respondWith;
 
-	if (req.url === '/library/sections/1/refresh') {
-		res.writeHead(200);
-		return res.end();
-	} else if (req.url === '/library/sections') {
-		sampleFilename = 'library_sections';
-	}  else if (req.url === '/clients') {
-		sampleFilename = 'clients';
+function hasExtension(filename) {
+	return filename.indexOf('.') !== -1;
+}
+
+function replaceSlashWithRoot(uri) {
+	return uri.replace(/^\/$/, '/root');
+}
+
+function respondToRequest(uri, requestBody, cb) {
+	uri = replaceSlashWithRoot(uri);
+
+	var filepath = hasExtension(uri) ? uri : uri + '.json';
+	if (respondWith === 'content') {
+		fs.readFile('test/samples/'+ filepath, cb);
+	} else if (respondWith === 'failure') {
+		return cb(new Error('Server decided to fail...'));
+	} else {
+		cb(null);
 	}
+}
 
-	deliverXml(sampleFilename, res);
-});
-
-function deliverXml(filename, response) {
-	fs.readFile('test/samples/'+ filename +'.json', function(err, content) {
-        response.writeHead(200, { 'Content-Type': 'application/json' });
-		response.write(content);
-		response.end();
-	});
+// Looks kinda strange, but its needed for nock
+// not to explode as we've got one .get('/') in our nock scope
+function replaceActualPathToRoot(path) {
+	return '/';
 }
 
 module.exports = {
-	start: function (port) {
-		server.listen(port || PLEX_SERVER_PORT);
+	start: function start(options) {
+		options = options || {};
+		options.port = options.port || PLEX_SERVER_PORT;
+		respondWith = 'content'
+
+		return nock('http://localhost:' + options.port, {
+					reqheaders: options.reqheaders
+				})
+				.filteringPath(replaceActualPathToRoot)
+				.get('/')
+				.reply(options.statusCode || 200, respondToRequest);
 	},
 
-	stop: function() {
-		server.close();
+	stop: function stop() {
+		nock.cleanAll();
+	},
+
+	requiresAuthToken: function requiresAuthToken(options) {
+		options = options || {};
+
+		return nock('https://plex.tv',  {
+					reqheaders: options.reqheaders
+				})
+				.post('/users/sign_in.xml')
+				.replyWithFile(201, __dirname + '/samples/users/sign_in.xml');
+	},
+
+	withoutContent: function withoutContent() {
+		respondWith = null;
+	},
+
+	fails: function fails() {
+		respondWith = 'failure';
 	}
 };

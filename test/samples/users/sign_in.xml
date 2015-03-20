@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user email="foo@bar.com" id="1234" thumb="http://www.gravatar.com/avatar/1234" username="foo" title="foo" cloudSyncDevice="" locale="" authenticationToken="abc-pretend-to-be-token" restricted="0" home="0" queueEmail="queue+4321@save.plex.tv" queueUid="4321">
+  <entitlements all="0">
+  </entitlements>
+  <username>foo</username>
+  <email>foo@bar.com</email>
+  <joined-at type="datetime">2010-01-01 22:51:56 UTC</joined-at>
+  <authentication-token>abc-pretend-to-be-token</authentication-token>
+</user>
