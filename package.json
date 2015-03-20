@@ -7,8 +7,9 @@
     "test": "test"
   },
   "dependencies": {
+    "q": "^1.0.1",
     "request": "^2.36.0",
-    "q": "^1.0.1"
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "expect.js": "*",
