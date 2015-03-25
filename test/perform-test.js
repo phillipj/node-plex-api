@@ -15,12 +15,6 @@ describe('perform()', function() {
 		api = new PlexAPI('localhost');
 	});
 
-	afterEach(function() {
-		try {
-			server.stop();
-		} catch (ignoredException) {}
-	});
-
 	it('should exist', function() {
 		expect(api.perform).to.be.a('function');
 	});
@@ -31,15 +25,14 @@ describe('perform()', function() {
 		}).to.throwException('TypeError');
 	});
 
-	it('promise should fail when not able to connect to server', function() {
-		server.stop();
-
+	it('promise should fail when server responds with failure status code', function() {
         return api.perform(PERFORM_URL).fail(function(err) {
 			expect(err).not.to.be(null);
 		});
 	});
 
 	it('promise should succeed when request response status code is 200', function() {
+		server.withoutContent();
 		return api.perform(PERFORM_URL);
 	});
 });

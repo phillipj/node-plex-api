@@ -12,12 +12,6 @@ describe('find()', function() {
 		api = new PlexAPI('localhost');
 	});
 
-	afterEach(function() {
-		try {
-			server.stop();
-		} catch (ignoredException) {}
-	});
-
 	it('should exist', function() {
 		expect(api.find).to.be.a('function');
 	});

@@ -15,12 +15,6 @@ describe('query()', function() {
 		api = new PlexAPI('localhost');
 	});
 
-	afterEach(function() {
-		try {
-			server.stop();
-		} catch (ignoredException) {}
-	});
-
 	it('should exist', function() {
 		expect(api.query).to.be.a('function');
 	});
@@ -31,10 +25,14 @@ describe('query()', function() {
 		}).to.throwException('TypeError');
 	});
 
-	it('promise should fail when not able to connect to server', function() {
-		server.stop();
-		return api.query(ROOT_URL).fail(function(err) {
+	it('promise should fail when server fails', function(done) {
+		server.fails();
+
+		api.query(ROOT_URL).then(function() {
+			done(Error('Shouldnt succeed!'));
+		}).fail(function(err) {
 			expect(err).not.to.be(null);
+			done();
 		});
 	});
 
