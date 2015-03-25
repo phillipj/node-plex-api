@@ -12,6 +12,8 @@ describe('find()', function() {
 		api = new PlexAPI('localhost');
 	});
 
+	afterEach(server.stop);
+
 	it('should exist', function() {
 		expect(api.find).to.be.a('function');
 	});

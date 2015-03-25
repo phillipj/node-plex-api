@@ -14,6 +14,8 @@ describe('Module API', function() {
 		api = new PlexAPI('localhost');
 	});
 
+	afterEach(server.stop);
+
 	it('should expose constructor', function() {
 		expect(PlexAPI).to.be.a('function');
 	});
@@ -33,7 +35,11 @@ describe('Module API', function() {
 	});
 
 	it('should have configurable server port', function(done) {
-		api = new PlexAPI('localhost', 32401);
+		api = new PlexAPI({
+			hostname: 'localhost',
+			port: 32401
+		});
+
 		server.start(32401);
 
 		api.query(ROOT_URL).done(function(result) {

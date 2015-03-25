@@ -4,7 +4,6 @@ var nock = require('nock');
 var PLEX_SERVER_PORT = 32400;
 
 var respondWith;
-var scope;
 
 function hasExtension(filename) {
 	return filename.indexOf('.') !== -1;
@@ -34,16 +33,31 @@ function replaceActualPathToRoot(path) {
 }
 
 module.exports = {
-	start: function start(port, hostname) {
+	start: function start(port, options) {
+		options = options || {};
 		port = port || PLEX_SERVER_PORT;
-		hostname = hostname || 'localhost';
-
 		respondWith = 'content'
 
-		scope = nock('http://'+ hostname +':' + port)
+		return nock('http://localhost:' + port, {
+					reqheaders: options.reqheaders
+				})
 				.filteringPath(replaceActualPathToRoot)
 				.get('/')
-				.reply(200, respondToRequest);
+				.reply(options.statusCode || 200, respondToRequest);
+	},
+
+	stop: function stop() {
+		nock.cleanAll();
+	},
+
+	requiresAuthToken: function requiresAuthToken(options) {
+		options = options || {};
+
+		return nock('https://plex.tv',  {
+					reqheaders: options.reqheaders
+				})
+				.post('/users/sign_in.xml')
+				.replyWithFile(201, __dirname + '/samples/users/sign_in.xml');
 	},
 
 	withoutContent: function withoutContent() {
