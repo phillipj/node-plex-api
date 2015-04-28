@@ -87,7 +87,7 @@ client.find("/").then(function (directories) {
 ```
 
 ## HTTP API Documentation
-For more information about the API capabilities, see the [HTTP/API Control description](https://oldwiki.plexapp.com/index.php?title=HTTP_API/Control) at plexapp.com
+For more information about the API capabilities, see the [unofficial Plex API documentation](https://code.google.com/p/plex-api/w/list).
 
 ## Running tests
 ```shell
