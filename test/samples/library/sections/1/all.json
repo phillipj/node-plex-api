@@ -1,0 +1,17 @@
+{ "_elementType":"MediaContainer",
+  "librarySectionID":"1",
+  "librarySectionTitle":"Misc",
+  "nocache":"1",
+  "thumb":"/:/resources/show.png",
+  "title1":"Misc",
+  "title2":"All Shows",
+  "viewGroup":"show",
+  "_children":[{
+    "_elementType":"Directory",
+    "key":"/library/metadata/9901/children",
+    "type":"show",
+    "title":"The Sample Show",
+    "summary":"This is an example show."
+  }
+]}
+
