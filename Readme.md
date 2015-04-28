@@ -99,6 +99,9 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v2.0.1
+- Bugfix for wrong `.uri` in some cases
+
 ### v2.0.0
 - PlexHome support
 - Deprecated port argument of PlexAPI constructor in favor of an options object
