@@ -68,6 +68,12 @@ describe('query()', function() {
 				expect(result._children[0].uri).to.be('/library/sections/1');
 			});
 		});
+
+		it('should use the key as the uri if the key is a root-relative path', function() {
+			return api.query('/library/sections/1/all').then(function(result) {
+				expect(result._children[0].uri).to.be(result._children[0].key);
+			});
+		});
 	});
 
 	describe('Server URI', function() {
