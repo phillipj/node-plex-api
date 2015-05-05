@@ -9,7 +9,8 @@
   "dependencies": {
     "q": "^1.0.1",
     "request": "^2.36.0",
-    "uuid": "^2.0.1"
+    "uuid": "^2.0.1",
+    "xml2json": "^0.6.2"
   },
   "devDependencies": {
     "expect.js": "*",
@@ -33,5 +34,9 @@
     "node": ">=0.10"
   },
   "author": "Phillip Johnsen <phillip@lightweight.no>",
-  "license": "MIT"
+  "license": "MIT",
+  "jshintConfig": {
+    "undef": false,
+    "unused": false
+  }
 }
