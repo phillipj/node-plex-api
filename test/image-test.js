@@ -17,7 +17,7 @@ describe('query()', function() {
 	afterEach(server.stop);
 
 
-	it.only('resource endpoint should return a buffer', function() {
+	it('resource endpoint should return a buffer', function() {
 		return api.query('/resources/movie-creative-commons-flowercat.jpg').then(function(result) {
 			// throw new Error(typeof result);
 			console.log(result);
