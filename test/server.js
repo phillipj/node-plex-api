@@ -41,6 +41,9 @@ module.exports = {
 		return nock('http://localhost:' + options.port, {
 					reqheaders: options.reqheaders
 				})
+				.defaultReplyHeaders({
+					'Content-Type': 'application/json'
+				})
 				.filteringPath(replaceActualPathToRoot)
 				.get('/')
 				.reply(options.statusCode || 200, respondToRequest);
