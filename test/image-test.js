@@ -19,11 +19,7 @@ describe('query()', function() {
 
 	it('resource endpoint should return a buffer', function() {
 		return api.query('/resources/movie-creative-commons-flowercat.jpg').then(function(result) {
-			// throw new Error(typeof result);
-			console.log(result);
 			expect(result).to.be.a(Buffer);
-		},function(e) {
-			console.log('teste', e);
 		});
 	});
 
