@@ -7,8 +7,8 @@ describe('query()', function() {
 	var api;
 
 	beforeEach(function() {
-		server.start().defaultReplyHeaders({
-			'Content-Type': 'image/jpg'
+		server.start({
+			contentType: 'image/jpg'
 		});
 
 		api = new PlexAPI('localhost');
@@ -26,5 +26,5 @@ describe('query()', function() {
 			console.log('teste', e);
 		});
 	});
-	
+
 });
