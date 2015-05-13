@@ -13,6 +13,11 @@ Options:
 - **port**: port number Plex Server is listening on (optional, default: 32400)
 - **username**: plex.tv username (optional / required for PlexHome)
 - **password**: plex.tv password (optional / required for PlexHome)
+- **options**: override additional PlexHome options (optional for PlexHome)
+	- **identifier**: client identifier, default `generated uuid v4`
+	- **product**: default `App`
+	- **version**: default `1.0`
+	- **device**: default `App`
 
 If argument is a `string` it is used as the hostname.
 
