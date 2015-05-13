@@ -59,4 +59,32 @@ describe('query()', function() {
 		});
 	});
 
+	it('should override default options when specified', function() {
+		api = new PlexAPI({
+			hostname: 'localhost',
+			username: 'foo',
+			password: 'bar',
+			options: {
+				identifier: 'mock-identifier',
+				product: 'mock-product',
+				version: 'mock-version',
+				device: 'mock-device'
+			}
+		});
+
+		scope = server.requiresAuthToken({
+			reqheaders: {
+				'X-Plex-Client-Identifier': 'mock-identifier',
+				'X-Plex-Product': 'mock-product',
+				'X-Plex-Version': 'mock-version',
+				'X-Plex-Device': 'mock-device'
+			}
+		});
+
+		server.start()
+
+		return api.query(ROOT_URL).then(function(result) {
+			scope.done();
+		});
+	});
 });
