@@ -108,7 +108,7 @@ Contributions are more than welcome! Create an issue describing what you want to
 - Add ability to define app options by @DMarby
 
 ### v2.0.1
-- Bugfix for wrong `.uri` in some cases
+- Bugfix for wrong `.uri` in some cases by @pjeby
 
 ### v2.0.0
 - PlexHome support
