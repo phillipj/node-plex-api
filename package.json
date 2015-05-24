@@ -34,9 +34,5 @@
     "node": ">=0.10"
   },
   "author": "Phillip Johnsen <phillip@lightweight.no>",
-  "license": "MIT",
-  "jshintConfig": {
-    "undef": false,
-    "unused": false
-  }
+  "license": "MIT"
 }
