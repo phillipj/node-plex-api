@@ -36,10 +36,14 @@ module.exports = {
 	start: function start(options) {
 		options = options || {};
 		options.port = options.port || PLEX_SERVER_PORT;
+		options.contentType = options.contentType || 'application/json';
 		respondWith = 'content'
 
 		return nock('http://localhost:' + options.port, {
 					reqheaders: options.reqheaders
+				})
+				.defaultReplyHeaders({
+					'Content-Type': options.contentType
 				})
 				.filteringPath(replaceActualPathToRoot)
 				.get('/')
