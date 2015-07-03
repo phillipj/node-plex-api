@@ -126,6 +126,9 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v2.4.0
+- Added `postQuery()` to perform POST requests by @OverloadUT
+
 ### v2.3.0
 - PlexHome authentication if needed when calling `.perform()` as with `.query()`, by @OverloadUT
 
