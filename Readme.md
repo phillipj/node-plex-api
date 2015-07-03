@@ -104,6 +104,9 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v2.3.0
+- PlexHome authentication if needed when calling `.perform()` as with `.query()`, by @OverloadUT
+
 ### v2.2.0
 - Convert to JSON or XML according to server response header, or resolve with raw server response buffer. This allows for image buffers to be fetched. By @YouriT
 
