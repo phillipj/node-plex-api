@@ -44,6 +44,28 @@ client.query("/").then(function (result) {
 });
 ```
 
+**postQuery(uri) : Send a POST request and retrieve the response**
+
+This is identical to ```query(uri)```, except that the request will be a POST rather than a GET. 
+
+Note that the parameters can only be passed as a query string as part of the uri, which is all Plex requires. (```Content-Length``` will always be zero)
+
+```js
+var PlexAPI = require("plex-api");
+var client = new PlexAPI("192.168.0.1");
+
+client.postQuery("/playQueue?type=video&uri=someuri&shuffle=0'").then(function (result) {
+	console.log("Added video to playQueue %s",
+		result.playQueueID);
+
+	// array of children, such as Directory or Server items
+	// will have the .uri-property attached
+	console.log(result._children);
+}, function (err) {
+	throw new Error("Could not connect to server");
+});
+```
+
 **perform(uri) : Perform an API action**
 
 When performing an "action" on the HTTP API, the response body will be empty.
