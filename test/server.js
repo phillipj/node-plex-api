@@ -37,7 +37,7 @@ module.exports = {
 		options = options || {};
 		options.port = options.port || PLEX_SERVER_PORT;
 		options.contentType = options.contentType || 'application/json';
-		respondWith = 'content'
+		respondWith = 'content';
 
 		return nock('http://localhost:' + options.port, {
 					reqheaders: options.reqheaders
@@ -47,6 +47,23 @@ module.exports = {
 				})
 				.filteringPath(replaceActualPathToRoot)
 				.get('/')
+				.reply(options.statusCode || 200, respondToRequest);
+	},
+
+	expectsPost: function start(options) {
+		options = options || {};
+		options.port = options.port || PLEX_SERVER_PORT;
+		options.contentType = options.contentType || 'application/json';
+		respondWith = 'content';
+
+		return nock('http://localhost:' + options.port, {
+					reqheaders: options.reqheaders
+				})
+				.defaultReplyHeaders({
+					'Content-Type': options.contentType
+				})
+				.filteringPath(replaceActualPathToRoot)
+				.post('/')
 				.reply(options.statusCode || 200, respondToRequest);
 	},
 
@@ -63,6 +80,8 @@ module.exports = {
 				.post('/users/sign_in.xml')
 				.replyWithFile(201, __dirname + '/samples/users/sign_in.xml');
 	},
+
+
 
 	withoutContent: function withoutContent() {
 		respondWith = null;
