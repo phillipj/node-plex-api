@@ -133,6 +133,12 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v2.5.0
+- Updated the readme to explain each of the X-Plex headers by @OverloadUT
+- The X-Plex headers are now sent on every request by @OverloadUT
+- Added missing X-Plex headers: deviceName, platformVersion by @OverloadUT
+- Updated the default X-Plex headers to be a bit more descriptive by @OverloadUT
+
 ### v2.4.0
 - Added `postQuery()` to perform POST requests by @OverloadUT
 
