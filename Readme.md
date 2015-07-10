@@ -8,20 +8,27 @@ Small module which helps you query the Plex Media Server HTTP API.
 
 Instantiate a PlexAPI client.
 
+The parameter can be a string representing the server's hostname, or an object with the following properties: 
+
 Options:
 - **hostname**: hostname where Plex Server runs
 - **port**: port number Plex Server is listening on (optional, default: 32400)
 - **username**: plex.tv username (optional / required for PlexHome)
 - **password**: plex.tv password (optional / required for PlexHome)
-- **options**: override additional PlexHome options (optional for PlexHome)
-	- **identifier**: client identifier, default `generated uuid v4`
-	- **product**: default `App`
-	- **version**: default `1.0`
-	- **device**: default `App`
+- **options**: override additional PlexHome options (optional, but recommended for PlexHome)
+	- **identifier**: A unique client identifier. Default is a `generated uuid v4`. *Note: you should really provide this rather than let it get generated. Every time your app runs, a new "device" will get registered on your Plex account, which can lead to poor performance once hundreds or thousands of them get created. Trust me!*
+	- **product**: The name of your application. Official Plex examples: `Plex Web`, `Plex Home Theater`, `Plex for Xbox One`. Default `Node.js App`
+	- **version**: The version of your app. Default `1.0`
+	- **deviceName**: The "name" of the device your app is running on. For apps like Plex Home Theater and mobile apps, it's the computer or phone's name chosen by the user. Default `Node.js App`
+	- **platform**: The platform your app is running on. The use of this is inconsistent in the official Plex apps. It is not displayed on the web interface. Official Plex examples: `Chrome`, `Plex Home Theater`, `Windows`. Default is `Node.js`.
+	- **platformVersion**: The platform version. Default is the version of Node running.
+	- **device**: The name of the type of computer your app is running on, usually the OS name. Official Plex examples: `Windows`, `iPhone`, `Xbox One`. Default is whatever `os.platform()` returns.
 
-If argument is a `string` it is used as the hostname.
+Here's an example of what an app shows up as on the Plex web interface
 
-For those who has PlexHome enabled on their server, will have to specify their username and password used at plex.tv.
+![Plex Device Example](docs/plex-device-example.png?raw)
+
+The rows in that example from top to bottom are `deviceName`, `version`, `product`, and `device`.
 
 **query(uri) : Retrieve content from URI**
 

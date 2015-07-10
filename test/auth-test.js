@@ -131,10 +131,13 @@ describe('Auth Tests', function() {
 		it('should override default options when specified', function () {
 			api = new PlexAPI({
 				hostname: 'localhost', username: 'foo', password: 'bar', options: {
-					identifier: 'mock-identifier',
-					product   : 'mock-product',
-					version   : 'mock-version',
-					device    : 'mock-device'
+					identifier     : 'mock-identifier',
+					product        : 'mock-product',
+					version        : 'mock-version',
+					device         : 'mock-device',
+					deviceName     : 'mock-deviceName',
+					platform       : 'mock-platform',
+					platformVersion: 'mock-platformVersion'
 				}
 			});
 
@@ -143,7 +146,10 @@ describe('Auth Tests', function() {
 					'X-Plex-Client-Identifier': 'mock-identifier',
 					'X-Plex-Product'          : 'mock-product',
 					'X-Plex-Version'          : 'mock-version',
-					'X-Plex-Device'           : 'mock-device'
+					'X-Plex-Device'           : 'mock-device',
+					'X-Plex-Device-Name'      : 'mock-deviceName',
+					'X-Plex-Platform'         : 'mock-platform',
+					'X-Plex-Platform-Version' : 'mock-platformVersion'
 				}
 			});
 

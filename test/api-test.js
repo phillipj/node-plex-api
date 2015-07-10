@@ -47,4 +47,37 @@ describe('Module API', function() {
 			done();
 		});
 	});
+
+	it('should have configurable options that get sent in every request', function() {
+		api = new PlexAPI({
+			hostname       : 'localhost',
+			options: {
+				identifier     : 'mock-identifier',
+				product        : 'mock-product',
+				version        : 'mock-version',
+				device         : 'mock-device',
+				deviceName     : 'mock-deviceName',
+				platform       : 'mock-platform',
+				platformVersion: 'mock-platformVersion'
+			}
+		});
+
+		server.stop();
+		var nockServer = server.start({
+			reqheaders: {
+				'X-Plex-Client-Identifier': 'mock-identifier',
+				'X-Plex-Product'          : 'mock-product',
+				'X-Plex-Version'          : 'mock-version',
+				'X-Plex-Device'           : 'mock-device',
+				'X-Plex-Device-Name'      : 'mock-deviceName',
+				'X-Plex-Platform'         : 'mock-platform',
+				'X-Plex-Platform-Version' : 'mock-platformVersion'
+			}
+		});
+
+		api.query(ROOT_URL).done(function(result) {
+			expect(result).to.be.an('object');
+			nockServer.done();
+		});
+	});
 });
