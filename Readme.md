@@ -133,6 +133,15 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v3.0.0
+- Change xml2json to xml2js by @OverloadUT
+
+#### BREAKING CHANGE
+
+Some of URIs on the Plex Server responds with XML instead of JSON. Previous versions of plex-api used xml2json to translate between XML to JSON. We have now replaced xml2json with xml2js which might result in a different JSON format when requesting URIs responding with XML.
+
+Please see the documentation of (xml2json)[https://github.com/buglabs/node-xml2json] and (xml2js)[https://github.com/Leonidas-from-XIV/node-xml2js] for more details about their differences.
+
 ### v2.5.0
 - Updated the readme to explain each of the X-Plex headers by @OverloadUT
 - The X-Plex headers are now sent on every request by @OverloadUT
