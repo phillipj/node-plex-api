@@ -8,7 +8,7 @@ Small module which helps you query the Plex Media Server HTTP API.
 
 Instantiate a PlexAPI client.
 
-The parameter can be a string representing the server's hostname, or an object with the following properties: 
+The parameter can be a string representing the server's hostname, or an object with the following properties:
 
 Options:
 - **hostname**: hostname where Plex Server runs
@@ -53,7 +53,7 @@ client.query("/").then(function (result) {
 
 **postQuery(uri) : Send a POST request and retrieve the response**
 
-This is identical to ```query(uri)```, except that the request will be a POST rather than a GET. 
+This is identical to ```query(uri)```, except that the request will be a POST rather than a GET.
 
 Note that the parameters can only be passed as a query string as part of the uri, which is all Plex requires. (```Content-Length``` will always be zero)
 
@@ -118,6 +118,45 @@ client.find("/").then(function (directories) {
 }, function (err) {
 	throw new Error("Could not connect to server");
 });
+```
+
+## Authenticators
+
+An authenticator is used by plex-api to authenticate its request against Plex Servers with a PlexHome setup. The most common authentication mechanism is by username and password.
+
+You can provide your own custom authentication mechanism, read more about custom authenticators below.
+
+### Credentials: username and password
+
+Comes bundled with plex-api. Just provide `options.username` and `options.password` when creating a PlexAPI instance and you are good to go.
+
+See the [plex-api-credentials](https://www.npmjs.com/package/plex-api-credentials) module for more information about its inner workings.
+
+### Custom authenticator
+
+In its simplest form an `authenticator` is an object with **one required** function `authenticate()` which should return the autentication token needed by plex-api to satisfy Plex Server.
+
+An optional method `initialize()` could be implemented if you need reference to the created PlexAPI instance when it's created.
+
+```js
+{
+  // OPTIONAL
+  initialize: function(plexApi) {
+    // plexApi === the PlexAPI instance just created
+  },
+  // REQUIRED
+  authenticate: function(plexApi, callback) {
+    // plexApi === the PlexAPI instance requesting the authentication token
+
+    // invoke callback if something fails
+    if (somethingFailed) {
+      return callback(new Error('I haz no cluez about token!'));
+    }
+
+    // or when you have a token
+    callback(null, 'I-found-this-token');
+  }
+}
 ```
 
 ## HTTP API Documentation
