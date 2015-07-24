@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "plex-api-credentials": "^2.0.0",
+    "plex-api-headers": "^1.0.0",
     "q": "^1.0.1",
     "request": "^2.36.0",
     "uuid": "^2.0.1",
