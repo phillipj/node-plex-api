@@ -180,6 +180,11 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v3.1.0
+
+- Extensible authentication mechanisms by @phillipj
+- Extracted HTTP headers generation into [plex-api-headers](https://www.npmjs.com/package/plex-api-headers) for re-use by @phillipj
+
 ### v3.0.0
 - Change xml2json to xml2js by @OverloadUT
 
