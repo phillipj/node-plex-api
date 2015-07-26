@@ -7,6 +7,8 @@
     "test": "test"
   },
   "dependencies": {
+    "plex-api-credentials": "^2.0.0",
+    "plex-api-headers": "^1.0.0",
     "q": "^1.0.1",
     "request": "^2.36.0",
     "uuid": "^2.0.1",
@@ -17,10 +19,12 @@
     "jscs": "^1.11.3",
     "jshint": "^2.6.3",
     "mocha": "*",
-    "nock": "^1.2.1"
+    "nock": "^1.2.1",
+    "proxyquire": "^1.6.0",
+    "sinon": "^1.15.4"
   },
   "scripts": {
-    "test": "jshint lib/* && jscs lib/* && mocha --reporter list test/*-test.js"
+    "test": "jshint lib/* && jscs lib/* && mocha test/*-test.js"
   },
   "files": [
     "lib"

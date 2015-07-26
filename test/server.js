@@ -39,7 +39,7 @@ module.exports = {
 		options.contentType = options.contentType || 'application/json';
 		respondWith = 'content';
 
-		return nock('http://localhost:' + options.port, {
+		var scope = nock('http://localhost:' + options.port, {
 					reqheaders: options.reqheaders
 				})
 				.defaultReplyHeaders({
@@ -48,6 +48,16 @@ module.exports = {
 				.filteringPath(replaceActualPathToRoot)
 				.get('/')
 				.reply(options.statusCode || 200, respondToRequest);
+
+		// NOT TO PLEASED ABOUT HARDCODING THIS MATCHHEADER() TOKEN ...
+		if (options.expectRetry) {
+			scope
+				.get('/')
+				.matchHeader('X-Plex-Token', 'abc-pretend-to-be-token')
+				.reply(200, respondToRequest);
+		}
+
+		return scope;
 	},
 
 	expectsPost: function start(options) {
@@ -70,18 +80,6 @@ module.exports = {
 	stop: function stop() {
 		nock.cleanAll();
 	},
-
-	requiresAuthToken: function requiresAuthToken(options) {
-		options = options || {};
-
-		return nock('https://plex.tv',  {
-					reqheaders: options.reqheaders
-				})
-				.post('/users/sign_in.xml')
-				.replyWithFile(201, __dirname + '/samples/users/sign_in.xml');
-	},
-
-
 
 	withoutContent: function withoutContent() {
 		respondWith = null;
