@@ -73,7 +73,7 @@ describe('Authenticator', function() {
             });
 
             return api.query(ROOT_URL).then(function () {
-                assert(authenticatorStub.calledOnce, 'authenticator was called');
+                assert(authenticatorStub.firstCall.calledWith(api), 'authenticator was called');
             });
         });
 
