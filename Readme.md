@@ -180,6 +180,9 @@ Contributions are more than welcome! Create an issue describing what you want to
 
 ## Changelog
 
+### v3.1.1
+- Fixing broken authentication blooper by @phillipj
+
 ### v3.1.0
 
 - Extensible authentication mechanisms by @phillipj
