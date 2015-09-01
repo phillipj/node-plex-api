@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MediaContainer publicAddress="47.1.2.4">
+  <Device name="Node.js App" publicAddress="46.1.2.3" product="Node.js App" productVersion="1.0" platform="Node.js" platformVersion="v3.0.0" device="darwin" model="" vendor="" provides="controller" clientIdentifier="758b6938-907052f04d99" version="1.0" id="33847205" token="kiYsW" createdAt="1440669823" lastSeenAt="1440669824" screenResolution="" screenDensity="">
+  </Device>
+  <Device name="Yet another Node.js App" publicAddress="46.1.2.4" product="Node.js App" productVersion="1.0" platform="Node.js" platformVersion="v3.0.0" device="darwin" model="" vendor="" provides="controller" clientIdentifier="2d404e6b-4286-da65748a1ed4" version="1.0" id="33847195" token="ofaq" createdAt="1440669789" lastSeenAt="1440669790" screenResolution="" screenDensity="">
+  </Device>
+</MediaContainer>

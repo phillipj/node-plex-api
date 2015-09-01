@@ -35,11 +35,12 @@ function replaceActualPathToRoot(path) {
 module.exports = {
 	start: function start(options) {
 		options = options || {};
+		options.schemeAndHost = options.schemeAndHost || 'http://localhost';
 		options.port = options.port || PLEX_SERVER_PORT;
 		options.contentType = options.contentType || 'application/json';
 		respondWith = 'content';
 
-		var scope = nock('http://localhost:' + options.port, {
+		var scope = nock(options.schemeAndHost + ':' + options.port, {
 					reqheaders: options.reqheaders
 				})
 				.defaultReplyHeaders({
