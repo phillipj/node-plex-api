@@ -89,4 +89,25 @@ describe('query()', function() {
 			});
 		});
 	});
+
+	describe('XML responses', function() {
+		it('should convert XML to a JSON object', function() {
+			var plexTvApi = new PlexAPI({
+				hostname: 'plex.tv',
+				port: 443
+			});
+
+			server.stop();
+			server.start({
+				schemeAndHost: 'https://plex.tv',
+				port: 443,
+				contentType: 'application/xml'
+			});
+
+			return plexTvApi.query('/devices.xml').then(function(result) {
+				expect(result.MediaContainer).to.be.an('object');
+				expect(result.MediaContainer.attributes.publicAddress).to.equal('47.1.2.4');
+			});
+		});
+	});
 });
