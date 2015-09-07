@@ -175,6 +175,18 @@ For more information about the API capabilities, see the [unofficial Plex API do
 $ npm test
 ```
 
+## Usage in the wild
+
+plex-api has proven to be useful in more than one project over the years.
+
+Do you have project which uses plex-api? Please tell us about it and we'll list it here :)
+
+### alexa-plex
+
+Alexa (Amazon Echo) app for interacting with a Plex Server and controlling client playback.
+
+https://github.com/OverloadUT/alexa-plex by @OverloadUT.
+
 ## Contributing
 
 Contributions are more than welcome! Create an issue describing what you want to do. If that feature is seen to fit this project, send a pull request with the changes accompanied by tests.
