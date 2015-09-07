@@ -185,7 +185,7 @@ Do you have project which uses plex-api? Please tell us about it and we'll list 
 
 Alexa (Amazon Echo) app for interacting with a Plex Server and controlling client playback.
 
-https://github.com/OverloadUT/alexa-plex by @OverloadUT.
+https://github.com/OverloadUT/alexa-plex by [@OverloadUT](https://github.com/OverloadUT).
 
 ## Contributing
 
