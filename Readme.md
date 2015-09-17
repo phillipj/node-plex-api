@@ -187,6 +187,12 @@ Alexa (Amazon Echo) app for interacting with a Plex Server and controlling clien
 
 https://github.com/OverloadUT/alexa-plex by [@OverloadUT](https://github.com/OverloadUT).
 
+### nl.kikkert.plex
+
+The Plex Remote control app for the Homey device.
+
+https://github.com/MikeOne/nl.kikkert.plex by [@MikeOne](https://github.com/MikeOne).
+
 ## Contributing
 
 Contributions are more than welcome! Create an issue describing what you want to do. If that feature is seen to fit this project, send a pull request with the changes accompanied by tests.
