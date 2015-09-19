@@ -28,7 +28,8 @@ describe('perform()', function() {
 	});
 
 	it('promise should fail when server responds with failure status code', function() {
-        return api.perform(PERFORM_URL).fail(function(err) {
+		server.fails();
+		return api.perform(PERFORM_URL).fail(function(err) {
 			expect(err).not.to.be(null);
 		});
 	});
