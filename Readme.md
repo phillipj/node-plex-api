@@ -15,6 +15,7 @@ Options:
 - **port**: port number Plex Server is listening on (optional, default: 32400)
 - **username**: plex.tv username (optional / required for PlexHome)
 - **password**: plex.tv password (optional / required for PlexHome)
+- **token**: plex.tv authentication token (optional)
 - **options**: override additional PlexHome options (optional, but recommended for PlexHome)
 	- **identifier**: A unique client identifier. Default is a `generated uuid v4`. *Note: you should really provide this rather than let it get generated. Every time your app runs, a new "device" will get registered on your Plex account, which can lead to poor performance once hundreds or thousands of them get created. Trust me!*
 	- **product**: The name of your application. Official Plex examples: `Plex Web`, `Plex Home Theater`, `Plex for Xbox One`. Default `Node.js App`
@@ -97,7 +98,7 @@ client.perform("/library/sections/1/refresh").then(function () {
 ```
 
 ### .find(uri, [{criterias}])
-
+2
 **Find matching child items on URI**
 
 Uses `query()` behind the scenes, giving all directories and servers the beloved `.uri` property.
