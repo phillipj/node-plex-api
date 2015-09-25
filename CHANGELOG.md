@@ -1,5 +1,9 @@
 ## Change log
 
+### v3.2.0
+- Added `options.token` to specify authentication token at PlexAPI client instantiation by @MikeOne
+- Made responses with status code 2xx considered successfull, not just 200 by @MikeOne
+
 ### v3.1.2
 - Fixed XML parsing by @phillipj
 
