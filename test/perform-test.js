@@ -37,4 +37,13 @@ describe('perform()', function() {
 		server.withoutContent();
 		return api.perform(PERFORM_URL);
 	});
+
+	it('promise should succeed when request response status code is 201', function() {
+		server.stop();
+		server.start({
+		  statusCode: 201
+		});
+		server.withoutContent();
+		return api.perform(PERFORM_URL);
+	});
 });

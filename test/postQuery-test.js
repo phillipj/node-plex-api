@@ -37,6 +37,13 @@ describe('postQuery()', function() {
 		return api.postQuery(ROOT_URL);
 	});
 
+	it('promise should succeed when request response status code is 201', function() {
+		server.stop();
+		server.start({statusCode: 201});
+		server.expectsPost();
+		return api.postQuery(ROOT_URL);
+	});
+
 	it('should result in a POST request', function() {
 		server.expectsPost();
 		return api.postQuery(ROOT_URL);
