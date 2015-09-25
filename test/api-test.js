@@ -50,7 +50,8 @@ describe('Module API', function() {
 
 	it('should have configurable options that get sent in every request', function() {
 		api = new PlexAPI({
-			hostname       : 'localhost',
+			hostname     : 'localhost',
+			token        : 'mock-token',
 			options: {
 				identifier     : 'mock-identifier',
 				product        : 'mock-product',
@@ -71,7 +72,8 @@ describe('Module API', function() {
 				'X-Plex-Device'           : 'mock-device',
 				'X-Plex-Device-Name'      : 'mock-deviceName',
 				'X-Plex-Platform'         : 'mock-platform',
-				'X-Plex-Platform-Version' : 'mock-platformVersion'
+				'X-Plex-Platform-Version' : 'mock-platformVersion',
+				'X-Plex-Token'            : 'mock-token'
 			}
 		});
 
