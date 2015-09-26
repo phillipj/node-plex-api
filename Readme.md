@@ -98,7 +98,7 @@ client.perform("/library/sections/1/refresh").then(function () {
 ```
 
 ### .find(uri, [{criterias}])
-2
+
 **Find matching child items on URI**
 
 Uses `query()` behind the scenes, giving all directories and servers the beloved `.uri` property.
