@@ -7,21 +7,21 @@
     "test": "test"
   },
   "dependencies": {
-    "plex-api-credentials": "^2.0.0",
-    "plex-api-headers": "^1.0.0",
-    "q": "^1.0.1",
-    "request": "^2.36.0",
-    "uuid": "^2.0.1",
-    "xml2js": "^0.4.9"
+    "plex-api-credentials": "2.0.0",
+    "plex-api-headers": "1.1.0",
+    "q": "1.4.1",
+    "request": "2.64.0",
+    "uuid": "2.0.1",
+    "xml2js": "0.4.12"
   },
   "devDependencies": {
-    "expect.js": "*",
-    "jscs": "^1.11.3",
-    "jshint": "^2.6.3",
-    "mocha": "*",
-    "nock": "^1.2.1",
-    "proxyquire": "^1.6.0",
-    "sinon": "^1.15.4"
+    "expect.js": "0.3.1",
+    "jscs": "1.13.1",
+    "jshint": "2.8.0",
+    "mocha": "2.3.3",
+    "nock": "1.9.0",
+    "proxyquire": "1.7.3",
+    "sinon": "1.17.1"
   },
   "scripts": {
     "test": "jshint lib/* && jscs lib/* && mocha test/*-test.js"
