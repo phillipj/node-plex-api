@@ -21,7 +21,7 @@
     "mocha": "2.3.3",
     "nock": "2.15.0",
     "proxyquire": "1.7.3",
-    "sinon": "1.17.1"
+    "sinon": "1.17.2"
   },
   "scripts": {
     "test": "jshint lib/* && jscs lib/* && mocha test/*-test.js"
