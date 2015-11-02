@@ -15,13 +15,13 @@
     "xml2js": "0.4.15"
   },
   "devDependencies": {
-    "expect.js": "0.3.1",
-    "jscs": "2.4.0",
-    "jshint": "2.8.0",
-    "mocha": "2.3.3",
-    "nock": "2.17.0",
-    "proxyquire": "1.7.3",
-    "sinon": "1.17.2"
+    "expect.js": "^0.3.1",
+    "jscs": "^2.4.0",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.3",
+    "nock": "^2.17.0",
+    "proxyquire": "^1.7.3",
+    "sinon": "^1.17.2"
   },
   "scripts": {
     "test": "jshint lib/* && jscs lib/* && mocha test/*-test.js"
