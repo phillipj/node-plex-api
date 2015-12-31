@@ -9,7 +9,7 @@ describe('postQuery()', function() {
 	var api;
 
 	beforeEach(function() {
-		server.start();
+		server.expectsPost();
 
 		api = new PlexAPI('localhost');
 	});
@@ -20,10 +20,32 @@ describe('postQuery()', function() {
 		expect(api.postQuery).to.be.a('function');
 	});
 
-	it('requires url parameter', function() {
-		expect(function() {
-			api.postQuery();
-		}).to.throwException('TypeError');
+	describe('parameters', function() {
+		it('requires url parameter', function() {
+			expect(function() {
+				api.postQuery();
+			}).to.throwException('TypeError');
+		});
+
+		it('can accept url parameter as only parameter', function() {
+			return api.postQuery('/');
+		});
+
+		it('can accept url parameter as part of a parameter object', function() {
+			return api.postQuery({uri: '/'});
+		});
+
+		it('uses extra headers passed in parameters', function() {
+			server.stop();
+			var nockServer = server.expectsPost({'reqheaders': {
+				'X-TEST-HEADER':'X-TEST-HEADER-VAL'
+			}});
+
+			return api.postQuery({uri: '/', extraHeaders: {'X-TEST-HEADER':'X-TEST-HEADER-VAL'}}).then(function(result) {
+				nockServer.done();
+				return result;
+			});
+		});
 	});
 
 	it('promise should fail when server responds with failure status code', function() {
@@ -33,7 +55,6 @@ describe('postQuery()', function() {
 	});
 
 	it('promise should succeed when request response status code is 200', function() {
-		server.expectsPost();
 		return api.postQuery(ROOT_URL);
 	});
 
@@ -44,7 +65,6 @@ describe('postQuery()', function() {
 	});
 
 	it('should result in a POST request', function() {
-		server.expectsPost();
 		return api.postQuery(ROOT_URL);
 	});
 });

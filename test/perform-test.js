@@ -11,6 +11,7 @@ describe('perform()', function() {
 
 	beforeEach(function() {
 		server.start();
+		server.withoutContent();
 
 		api = new PlexAPI('localhost');
 	});
@@ -21,10 +22,32 @@ describe('perform()', function() {
 		expect(api.perform).to.be.a('function');
 	});
 
-	it('requires url parameter', function() {
-		expect(function() {
-			api.perform();
-		}).to.throwException('TypeError');
+	describe('parameters', function() {
+		it('requires url parameter', function() {
+			expect(function() {
+				api.perform();
+			}).to.throwException('TypeError');
+		});
+
+		it('can accept url parameter as only parameter', function() {
+			return api.perform('/');
+		});
+
+		it('can accept url parameter as part of a parameter object', function() {
+			return api.perform({uri: '/'});
+		});
+
+		it('uses extra headers passed in parameters', function() {
+			server.stop();
+			var nockServer = server.start({'reqheaders': {
+				'X-TEST-HEADER':'X-TEST-HEADER-VAL'
+			}});
+
+			return api.perform({uri: '/', extraHeaders: {'X-TEST-HEADER':'X-TEST-HEADER-VAL'}}).then(function(result) {
+				nockServer.done();
+				return result;
+			});
+		});
 	});
 
 	it('promise should fail when server responds with failure status code', function() {
@@ -35,7 +58,6 @@ describe('perform()', function() {
 	});
 
 	it('promise should succeed when request response status code is 200', function() {
-		server.withoutContent();
 		return api.perform(PERFORM_URL);
 	});
 

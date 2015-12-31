@@ -21,10 +21,36 @@ describe('query()', function() {
 		expect(api.query).to.be.a('function');
 	});
 
-	it('requires url parameter', function() {
-		expect(function() {
-			api.query();
-		}).to.throwException('TypeError');
+	describe('parameters', function() {
+		it('requires url parameter', function() {
+			expect(function() {
+				api.query();
+			}).to.throwException('TypeError');
+		});
+
+		it('can accept url parameter as only parameter', function() {
+			return api.query('/').then(function(result) {
+				expect(result).to.be.an('object');
+			});
+		});
+
+		it('can accept url parameter as part of a parameter object', function() {
+			return api.query({uri: '/'}).then(function(result) {
+				expect(result).to.be.an('object');
+			});
+		});
+
+		it('uses extra headers passed in parameters', function() {
+			server.stop();
+			var nockServer = server.start({'reqheaders': {
+				'X-TEST-HEADER':'X-TEST-HEADER-VAL'
+			}});
+
+			return api.query({uri: '/', extraHeaders: {'X-TEST-HEADER':'X-TEST-HEADER-VAL'}}).then(function(result) {
+				expect(result).to.be.an('object');
+				nockServer.done();
+			});
+		});
 	});
 
 	it('promise should fail when server fails', function(done) {
