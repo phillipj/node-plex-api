@@ -35,9 +35,9 @@ The rows in that example from top to bottom are `deviceName`, `version`, `produc
 
 **Retrieve content from URI**
 
-The parameter can be a string representing the URI, or an object with the following properties (everything is optional after the uri):
+The parameter can be a string representing the URI, or an object with the following properties:
 - **uri**: the URI to query
-- **extraHeaders**: an object with extra headers to send in the HTTP request. Useful for things like X-Plex-Target-Client-Identifier
+- (optional) **extraHeaders**: an object with extra headers to send in the HTTP request. Useful for things like X-Plex-Target-Client-Identifier
 
 Aside from requesting the API and returning its response, an `.uri` property are created to easier follow the URIs available in the HTTP API. At the moment URIs are attached for Directory and Server items.
 
