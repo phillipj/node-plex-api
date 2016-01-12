@@ -15,4 +15,8 @@ describe('_serverScheme', function() {
         var api = new PlexAPI({hostname: 'localhost', https: true});
         expect(api._serverScheme()).to.equal('https://');
     });
+    it('should use http when the https parameter is false, even on port 443', function() {
+        var api = new PlexAPI({hostname: 'localhost', port: 443, https: false});
+        expect(api._serverScheme()).to.equal('http://');
+    });
 });
