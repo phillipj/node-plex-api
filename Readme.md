@@ -32,9 +32,13 @@ Here's an example of what an app shows up as on the Plex web interface
 
 The rows in that example from top to bottom are `deviceName`, `version`, `product`, and `device`.
 
-### .query(uri)
+### .query(options)
 
 **Retrieve content from URI**
+
+The parameter can be a string representing the URI, or an object with the following properties:
+- **uri**: the URI to query
+- (optional) **extraHeaders**: an object with extra headers to send in the HTTP request. Useful for things like X-Plex-Target-Client-Identifier
 
 Aside from requesting the API and returning its response, an `.uri` property are created to easier follow the URIs available in the HTTP API. At the moment URIs are attached for Directory and Server items.
 
@@ -55,13 +59,13 @@ client.query("/").then(function (result) {
 });
 ```
 
-### .postQuery(uri)
+### .postQuery(options)
 
 **Send a POST request and retrieve the response**
 
-This is identical to ```query(uri)```, except that the request will be a POST rather than a GET.
+This is identical to `query()`, except that the request will be a POST rather than a GET. It has the same required and optional parameters as `query()`.
 
-Note that the parameters can only be passed as a query string as part of the uri, which is all Plex requires. (```Content-Length``` will always be zero)
+Note that the parameters can only be passed as a query string as part of the uri, which is all Plex requires. (`Content-Length` will always be zero)
 
 ```js
 var PlexAPI = require("plex-api");
@@ -79,12 +83,13 @@ client.postQuery("/playQueue?type=video&uri=someuri&shuffle=0'").then(function (
 });
 ```
 
-### .perform(uri)
+### .perform(options)
 
 **Perform an API action**
 
 When performing an "action" on the HTTP API, the response body will be empty.
 As the response content itself is worthless, `perform()` acts on the HTTP status codes the server responds with.
+It has the same required and optional parameters as `query()`.
 
 ```js
 var PlexAPI = require("plex-api");
@@ -98,11 +103,11 @@ client.perform("/library/sections/1/refresh").then(function () {
 });
 ```
 
-### .find(uri, [{criterias}])
+### .find(options, [{criterias}])
 
 **Find matching child items on URI**
 
-Uses `query()` behind the scenes, giving all directories and servers the beloved `.uri` property.
+Uses `query()` behind the scenes, giving all directories and servers the beloved `.uri` property. It has the same required and optional parameters as `query`, in addition to a second optional `criterias` parameter.
 
 ```js
 var PlexAPI = require("plex-api");

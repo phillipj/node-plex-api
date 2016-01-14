@@ -18,10 +18,36 @@ describe('find()', function() {
 		expect(api.find).to.be.a('function');
 	});
 
-	it('requires url parameter', function() {
-		expect(function() {
-			api.find();
-		}).to.throwException('TypeError');
+	describe('parameters', function() {
+		it('requires url parameter', function() {
+			expect(function() {
+				api.find();
+			}).to.throwException('TypeError');
+		});
+
+		it('can accept url parameter as only parameter', function() {
+			return api.find('/').then(function(result) {
+				expect(result).to.be.an('object');
+			});
+		});
+
+		it('can accept url parameter as part of a parameter object', function() {
+			return api.find({uri: '/'}).then(function(result) {
+				expect(result).to.be.an('object');
+			});
+		});
+
+		it('uses extra headers passed in parameters', function() {
+			server.stop();
+			var nockServer = server.start({'reqheaders': {
+				'X-TEST-HEADER':'X-TEST-HEADER-VAL'
+			}});
+
+			return api.find({uri: '/', extraHeaders: {'X-TEST-HEADER':'X-TEST-HEADER-VAL'}}).then(function(result) {
+				expect(result).to.be.an('object');
+				nockServer.done();
+			});
+		});
 	});
 
 	it('should provide all child items found', function() {
