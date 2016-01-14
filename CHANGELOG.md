@@ -3,11 +3,11 @@
 ### v3.3.0
 
 #### Added
-- Add support for extra headers in all of the query() related methods by @MikeOne [#48](https://github.com/phillipj/node-plex-api/pull/48)
-- Add support for `https` parameter to force https even on non-443 port by @MikeOne [#47](https://github.com/phillipj/node-plex-api/pull/47)
+- Add support for extra headers in all of the query() related methods by @OverloadUT [#48](https://github.com/phillipj/node-plex-api/pull/48)
+- Add support for `https` parameter to force https even on non-443 port by @OverloadUT [#47](https://github.com/phillipj/node-plex-api/pull/47)
 
 #### Fixed
-- Enabling gzip to fix a bug in some versions of PMS/PHT that silently fail when no Accept-Encoding header is sent by @MikeOne [#51](https://github.com/phillipj/node-plex-api/pull/51)
+- Enabling gzip to fix a bug in some versions of PMS/PHT that silently fail when no Accept-Encoding header is sent by @OverloadUT [#51](https://github.com/phillipj/node-plex-api/pull/51)
 
 ### v3.2.0
 - Added `options.token` to specify authentication token at PlexAPI client instantiation by @MikeOne
