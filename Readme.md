@@ -12,7 +12,8 @@ The parameter can be a string representing the server's hostname, or an object w
 
 Options:
 - **hostname**: hostname where Plex Server runs
-- **port**: port number Plex Server is listening on (optional, default: 32400)
+- **port**: port number Plex Server is listening on (optional, default: `32400`)
+- **https**: (optional, default: `false`)
 - **username**: plex.tv username (optional / required for PlexHome)
 - **password**: plex.tv password (optional / required for PlexHome)
 - **token**: plex.tv authentication token (optional)
