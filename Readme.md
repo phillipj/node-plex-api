@@ -31,7 +31,7 @@ Here's an example of what an app shows up as on the Plex web interface
 
 The rows in that example from top to bottom are `deviceName`, `version`, `product`, and `device`.
 
-### .query(parameters)
+### .query(options)
 
 **Retrieve content from URI**
 
@@ -58,7 +58,7 @@ client.query("/").then(function (result) {
 });
 ```
 
-### .postQuery(parameters)
+### .postQuery(options)
 
 **Send a POST request and retrieve the response**
 
@@ -82,7 +82,7 @@ client.postQuery("/playQueue?type=video&uri=someuri&shuffle=0'").then(function (
 });
 ```
 
-### .perform(parameters)
+### .perform(options)
 
 **Perform an API action**
 
@@ -102,7 +102,7 @@ client.perform("/library/sections/1/refresh").then(function () {
 });
 ```
 
-### .find(parameters, [{criterias}])
+### .find(options, [{criterias}])
 
 **Find matching child items on URI**
 
