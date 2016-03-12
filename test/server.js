@@ -93,6 +93,7 @@ module.exports = {
 	timeoutError: function start(options) {
 		options = options || {};
 		options.port = options.port || PLEX_SERVER_PORT;
+		options.delay = options.dely || 200
 		options.contentType = options.contentType || 'application/json';
 		respondWith = 'content';
 

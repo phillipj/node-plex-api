@@ -11,11 +11,13 @@ describe('timeoutError()', function() {
 	beforeEach(function() {
 		server.timeoutError();
 
-		api = new PlexAPI('localhost');
+		api = new PlexAPI({ hostname: 'localhost', timeout: 100});
 	});
 
 	afterEach(server.stop);
 
-	describe('timeout', function() {
+	it('returns error on timeout', function() {
+		return api.postQuery('/');
+	});
 
 });
