@@ -88,5 +88,23 @@ module.exports = {
 
 	fails: function fails() {
 		respondWith = 'failure';
+	},
+
+	timeoutError: function start(options) {
+		options = options || {};
+		options.port = options.port || PLEX_SERVER_PORT;
+		options.contentType = options.contentType || 'application/json';
+		respondWith = 'content';
+
+		return nock('http://localhost:' + options.port, {
+					reqheaders: options.reqheaders
+				})
+				.defaultReplyHeaders({
+					'Content-Type': options.contentType
+				})
+				.filteringPath(replaceActualPathToRoot)
+				.delay(options.delay)
+				.post('/')
+				.reply(options.statusCode || 200, respondToRequest);
 	}
 };
