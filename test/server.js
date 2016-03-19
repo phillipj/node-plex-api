@@ -93,19 +93,17 @@ module.exports = {
 	timeoutError: function start(options) {
 		options = options || {};
 		options.port = options.port || PLEX_SERVER_PORT;
-		options.delay = options.dely || 200
+		options.delay = options.delay || 3000
 		options.contentType = options.contentType || 'application/json';
 		respondWith = 'content';
 
-		return nock('http://localhost:' + options.port, {
-					reqheaders: options.reqheaders
-				})
+		return nock('http://localhost:' + options.port)
 				.defaultReplyHeaders({
 					'Content-Type': options.contentType
 				})
 				.filteringPath(replaceActualPathToRoot)
-				.delay(options.delay)
 				.post('/')
+				.delayConnection(options.delay)
 				.reply(options.statusCode || 200, respondToRequest);
 	}
 };
