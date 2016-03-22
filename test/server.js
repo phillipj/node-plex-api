@@ -102,7 +102,7 @@ module.exports = {
 					'Content-Type': options.contentType
 				})
 				.filteringPath(replaceActualPathToRoot)
-				.post('/')
+				.get('/')
 				.delayConnection(options.delay)
 				.reply(options.statusCode || 200, respondToRequest);
 	}

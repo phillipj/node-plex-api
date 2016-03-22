@@ -11,15 +11,15 @@ describe('timeoutError()', function() {
 	beforeEach(function() {
 		server.timeoutError();
 
-		api = new PlexAPI({ hostname: 'localhost', timeout: 50});
+		api = new PlexAPI({ hostname: 'localhost', timeout: 10});
 	});
 
 	afterEach(server.stop);
 
-	it('returns error on timeout', function() {
-		expect(function() {
-			api.query();
-		}).to.throwException('ETIMEDOUT');
-	});
-
+	it('returns error on timeout', function(done) {
+    	api.query('/').catch(function(err) {
+        	expect(err.code).to.be('ETIMEDOUT');
+        	done();
+    });
+});
 });
