@@ -17,6 +17,7 @@ Options:
 - **username**: plex.tv username (optional / required for PlexHome)
 - **password**: plex.tv password (optional / required for PlexHome)
 - **token**: plex.tv authentication token (optional)
+- **timeout**: timeout value to use when making requests (optional)
 - **options**: override additional PlexHome options (optional, but recommended for PlexHome)
 	- **identifier**: A unique client identifier. Default is a `generated uuid v4`. *Note: you should really provide this rather than let it get generated. Every time your app runs, a new "device" will get registered on your Plex account, which can lead to poor performance once hundreds or thousands of them get created. Trust me!*
 	- **product**: The name of your application. Official Plex examples: `Plex Web`, `Plex Home Theater`, `Plex for Xbox One`. Default `Node.js App`
