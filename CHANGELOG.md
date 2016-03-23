@@ -1,5 +1,14 @@
 ## Change log
 
+### v3.4.0
+
+#### Added
+- Added timeout option to control timeout on subsequent requests by @lokenx [#60](https://github.com/phillipj/node-plex-api/pull/60)
+
+#### Updates
+- xml2js from v0.4.15 to v0.4.16
+- request from v2.67.0 to v2.69.0
+
 ### v3.3.0
 
 #### Added
