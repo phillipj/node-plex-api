@@ -176,7 +176,7 @@ An optional method `initialize()` could be implemented if you need reference to 
 ```
 
 ## HTTP API Documentation
-For more information about the API capabilities, see the [unofficial Plex API documentation](https://code.google.com/p/plex-api/w/list).
+For more information about the API capabilities, see the [unofficial Plex API documentation](https://github.com/Arcanemagus/plex-api/wiki). The [PlexInc's desktop client wiki](https://github.com/plexinc/plex-media-player/wiki/Remote-control-API) might also be valueable.
 
 ## Running tests
 ```shell
