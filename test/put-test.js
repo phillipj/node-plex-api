@@ -5,11 +5,11 @@ var ROOT_URL = '/';
 
 var PlexAPI = require('..');
 
-describe('postQuery()', function() {
+describe('putQuery()', function() {
 	var api;
 
 	beforeEach(function() {
-		server.expectsPost();
+		server.expectsPut();
 
 		api = new PlexAPI('localhost');
 	});
@@ -17,31 +17,31 @@ describe('postQuery()', function() {
 	afterEach(server.stop);
 
 	it('should exist', function() {
-		expect(api.postQuery).to.be.a('function');
+		expect(api.putQuery).to.be.a('function');
 	});
 
 	describe('parameters', function() {
 		it('requires url parameter', function() {
 			expect(function() {
-				api.postQuery();
+				api.putQuery();
 			}).to.throwException('TypeError');
 		});
 
 		it('can accept url parameter as only parameter', function() {
-			return api.postQuery('/');
+			return api.putQuery('/');
 		});
 
 		it('can accept url parameter as part of a parameter object', function() {
-			return api.postQuery({uri: '/'});
+			return api.putQuery({uri: '/'});
 		});
 
 		it('uses extra headers passed in parameters', function() {
 			server.stop();
-			var nockServer = server.expectsPost({'reqheaders': {
+			var nockServer = server.expectsPut({'reqheaders': {
 				'X-TEST-HEADER':'X-TEST-HEADER-VAL'
 			}});
 
-			return api.postQuery({uri: '/', extraHeaders: {'X-TEST-HEADER':'X-TEST-HEADER-VAL'}}).then(function(result) {
+			return api.putQuery({uri: '/', extraHeaders: {'X-TEST-HEADER':'X-TEST-HEADER-VAL'}}).then(function(result) {
 				nockServer.done();
 				return result;
 			});
@@ -49,22 +49,22 @@ describe('postQuery()', function() {
 	});
 
 	it('promise should fail when server responds with failure status code', function() {
-        return api.postQuery(ROOT_URL).fail(function(err) {
+        return api.putQuery(ROOT_URL).fail(function(err) {
 			expect(err).not.to.be(null);
 		});
 	});
 
 	it('promise should succeed when request response status code is 200', function() {
-		return api.postQuery(ROOT_URL);
+		return api.putQuery(ROOT_URL);
 	});
 
 	it('promise should succeed when request response status code is 201', function() {
 		server.stop();
-		server.expectsPost({statusCode: 201});
-		return api.postQuery(ROOT_URL);
+		server.expectsPut({statusCode: 201});
+		return api.putQuery(ROOT_URL);
 	});
 
-	it('should result in a POST request', function() {
-		return api.postQuery(ROOT_URL);
+	it('should result in a PUT request', function() {
+		return api.putQuery(ROOT_URL);
 	});
 });
