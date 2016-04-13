@@ -1,5 +1,10 @@
 ## Change log
 
+### v3.5.0
+
+#### Added
+- Added support for PUT queries with .putQuery() by @IonicaBizau [#61](https://github.com/phillipj/node-plex-api/pull/61)
+
 ### v3.4.0
 
 #### Added
