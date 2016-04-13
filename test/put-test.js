@@ -64,7 +64,7 @@ describe('putQuery()', function() {
 		return api.putQuery(ROOT_URL);
 	});
 
-	it('should result in a POST request', function() {
+	it('should result in a PUT request', function() {
 		return api.putQuery(ROOT_URL);
 	});
 });
