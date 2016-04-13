@@ -72,7 +72,7 @@ Note that the parameters can only be passed as a query string as part of the uri
 var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
-client.postQuery("/playQueue?type=video&uri=someuri&shuffle=0'").then(function (result) {
+client.postQuery("/playQueue?type=video&uri=someuri&shuffle=0").then(function (result) {
 	console.log("Added video to playQueue %s",
 		result.playQueueID);
 
@@ -82,6 +82,26 @@ client.postQuery("/playQueue?type=video&uri=someuri&shuffle=0'").then(function (
 }, function (err) {
 	throw new Error("Could not connect to server");
 });
+```
+
+### .putQuery(options)
+
+**Send a PUT request and retrieve the response**
+
+This is identical to `query()`, except that the request will be a PUT rather than a GET. It has the same required and optional parameters as `query()`. It's is used to update parts of your Plex library.
+
+Note that the parameters can only be passed as a query string as part of the uri, which is all Plex requires. (`Content-Length` will always be zero)
+
+```js
+var PlexAPI = require("plex-api");
+var client = new PlexAPI("192.168.0.1");
+
+client.putQuery("/library/sections/3/all?id=123&summary.value=updatedSummaryText")
+	.then(function (result) {
+		console.log("Description of video by id 123 has been set to 'updatedSummaryText'");
+	}, function (err) {
+		throw new Error("Could not connect to server");
+	});
 ```
 
 ### .perform(options)
