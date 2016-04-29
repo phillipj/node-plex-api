@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "plex-api-credentials": "2.0.0",
+    "plex-api-credentials": "hyperlink/node-plex-api-credentials#add-managed-users-support",
     "plex-api-headers": "1.1.0",
     "q": "1.4.1",
     "request": "2.72.0",
