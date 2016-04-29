@@ -50,6 +50,33 @@ describe('perform()', function() {
 		});
 	});
 
+	it('promise should fail when request response status code is 403', function(done) {
+		const AUTH_TOKEN = 'my-auth-token';
+
+		api = new PlexAPI({
+			hostname: 'localhost',
+			token: AUTH_TOKEN
+		});
+
+		// we need to clear the standard nock response from server.start() invoked in the test setup,
+		// or else the mocked server will *not* respond with 403 status
+		server.stop();
+
+		var scope = server.empty()
+			.get('/library/sections/8/refresh')
+			.matchHeader('X-Plex-Token', AUTH_TOKEN)
+			.reply(403, "<html><head><title>Forbidden</title></head><body><h1>403 Forbidden</h1></body></html>", { 'content-length': '85',
+			'content-type': 'text/html',
+			connection: 'close',
+			'x-plex-protocol': '1.0',
+			'cache-control': 'no-cache' });
+
+		api.perform('/library/sections/8/refresh').catch(function(err) {
+			expect(err.message).to.contain('Plex Server denied request due to lack of managed user permissions!');
+			done();
+		});
+	});
+
 	it('promise should fail when server responds with failure status code', function() {
 		server.fails();
 		return api.perform(PERFORM_URL).fail(function(err) {
