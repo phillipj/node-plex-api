@@ -17,7 +17,8 @@ describe('Authenticator', function() {
     beforeEach(function() {
         authenticatorStub = sinon.stub().yields(null, 'abc-pretend-to-be-token');
         credentialsStub = sinon.stub().returns({
-            authenticate: authenticatorStub
+            authenticate: authenticatorStub,
+            on: function(){}
         });
 
         PlexAPI = proxyquire('..', {
