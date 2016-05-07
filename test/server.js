@@ -61,7 +61,11 @@ module.exports = {
 		return scope;
 	},
 
-	expectsPost: function start(options) {
+	empty: function empty() {
+		return nock('http://localhost' + ':' + PLEX_SERVER_PORT);
+	},
+
+	expectsPost: function expectsPost(options) {
 		options = options || {};
 		options.port = options.port || PLEX_SERVER_PORT;
 		options.contentType = options.contentType || 'application/json';
@@ -78,7 +82,7 @@ module.exports = {
 				.reply(options.statusCode || 200, respondToRequest);
 	},
 
-        expectsPut: function start(options) {
+	expectsPut: function expectsPut(options) {
 		options = options || {};
 		options.port = options.port || PLEX_SERVER_PORT;
 		options.contentType = options.contentType || 'application/json';
@@ -107,7 +111,7 @@ module.exports = {
 		respondWith = 'failure';
 	},
 
-	timeoutError: function start(options) {
+	timeoutError: function timeoutError(options) {
 		options = options || {};
 		options.port = options.port || PLEX_SERVER_PORT;
 		options.delay = options.delay || 3000

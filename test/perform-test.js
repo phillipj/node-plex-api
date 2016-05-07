@@ -50,6 +50,35 @@ describe('perform()', function() {
 		});
 	});
 
+	it('should retry with an authToken when request response status code is 403', function() {
+		const AUTH_TOKEN   = 'my-auth-token';
+		const ACCESS_TOKEN = 'my-access-token';
+
+		api.accessToken = ACCESS_TOKEN;
+		api.authToken   = AUTH_TOKEN;
+
+		var scope = server.empty()
+			.get('/library/sections/8/refresh')
+			.matchHeader('X-Plex-Token', ACCESS_TOKEN)
+			.reply(403, "<html><head><title>Forbidden</title></head><body><h1>403 Forbidden</h1></body></html>", { 'content-length': '85',
+			'content-type': 'text/html',
+			connection: 'close',
+			'x-plex-protocol': '1.0',
+			'cache-control': 'no-cache' })
+
+			.get('/library/sections/8/refresh')
+			.matchHeader('X-Plex-Token', AUTH_TOKEN)
+			.reply(200, "", { 'content-length': '0',
+			'content-type': 'text/html',
+			connection: 'close',
+			'x-plex-protocol': '1.0',
+			'cache-control': 'no-cache' });
+
+		return api.perform('/library/sections/8/refresh').then(function() {
+			expect(scope.isDone()).to.be.true;
+		});
+	});
+
 	it('promise should fail when server responds with failure status code', function() {
 		server.fails();
 		return api.perform(PERFORM_URL).fail(function(err) {
