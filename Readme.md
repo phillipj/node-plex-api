@@ -4,6 +4,10 @@ Small module which helps you query the Plex Media Server HTTP API.
 
 ## Usage
 
+```bash
+$ npm install plex-api --save
+```
+
 **PlexAPI(options | hostname)**
 
 Instantiate a PlexAPI client.
@@ -16,6 +20,9 @@ Options:
 - **https**: (optional, default: `false`)
 - **username**: plex.tv username (optional / required for PlexHome)
 - **password**: plex.tv password (optional / required for PlexHome)
+- **managedUser**: details required to perform operations as a managed PlexHome user
+	- **name**: managed user name
+	- **pin**: optional pin code for the managed user
 - **token**: plex.tv authentication token (optional)
 - **timeout**: timeout value in milliseconds to use when making requests (optional)
 - **options**: override additional PlexHome options (optional, but recommended for PlexHome)
