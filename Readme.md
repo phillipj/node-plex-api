@@ -168,6 +168,12 @@ Comes bundled with plex-api. Just provide `options.username` and `options.passwo
 
 See the [plex-api-credentials](https://www.npmjs.com/package/plex-api-credentials) module for more information about its inner workings.
 
+### PIN: authenticate by PIN code
+
+An authentication module that provides an interface for authenticating with Plex using a PIN, like the official clients do.
+
+https://www.npmjs.com/package/plex-api-pinauth
+
 ### Custom authenticator
 
 In its simplest form an `authenticator` is an object with **one required** function `authenticate()` which should return the autentication token needed by plex-api to satisfy Plex Server.
