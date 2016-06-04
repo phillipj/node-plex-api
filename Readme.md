@@ -56,7 +56,7 @@ client.query("/").then(function (result) {
 	// will have the .uri-property attached
 	console.log(result._children);
 }, function (err) {
-	throw new Error("Could not connect to server");
+	console.error("Could not connect to server", err);
 });
 ```
 
@@ -80,7 +80,7 @@ client.postQuery("/playQueue?type=video&uri=someuri&shuffle=0").then(function (r
 	// will have the .uri-property attached
 	console.log(result._children);
 }, function (err) {
-	throw new Error("Could not connect to server");
+	console.error("Could not connect to server", err);
 });
 ```
 
@@ -100,7 +100,7 @@ client.putQuery("/library/sections/3/all?id=123&summary.value=updatedSummaryText
 	.then(function (result) {
 		console.log("Description of video by id 123 has been set to 'updatedSummaryText'");
 	}, function (err) {
-		throw new Error("Could not connect to server");
+		console.error("Could not connect to server", err);
 	});
 ```
 
@@ -120,7 +120,7 @@ var client = new PlexAPI("192.168.0.1");
 client.perform("/library/sections/1/refresh").then(function () {
 	// successfully started to refresh library section #1
 }, function (err) {
-	throw new Error("Could not connect to server");
+	console.error("Could not connect to server", err);
 });
 ```
 
@@ -138,14 +138,14 @@ var client = new PlexAPI("192.168.0.1");
 client.find("/library/sections", {type: "movie"}).then(function (directories) {
 	// directories would be an array of sections whose type are "movie"
 }, function (err) {
-	throw new Error("Could not connect to server");
+	console.error("Could not connect to server", err);
 });
 
 // criterias are interpreted as regular expressions
 client.find("/library/sections", {type: "movie|shows"}).then(function (directories) {
 	// directories type would be "movie" OR "shows"
 }, function (err) {
-	throw new Error("Could not connect to server");
+	console.error("Could not connect to server", err);
 });
 
 // shorthand to retrieve all Directories
