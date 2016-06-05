@@ -16,6 +16,9 @@ Options:
 - **https**: (optional, default: `false`)
 - **username**: plex.tv username (optional / required for PlexHome)
 - **password**: plex.tv password (optional / required for PlexHome)
+- **homeUser**: details required to perform operations as PlexHome user
+	- **name**: managed user name
+	- **pin**: pin code for the managed user
 - **token**: plex.tv authentication token (optional)
 - **timeout**: timeout value in milliseconds to use when making requests (optional)
 - **options**: override additional PlexHome options (optional, but recommended for PlexHome)
