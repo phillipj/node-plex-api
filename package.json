@@ -24,7 +24,8 @@
     "sinon": "^1.17.2"
   },
   "scripts": {
-    "test": "jshint lib/* && jscs lib/* && mocha test/*-test.js"
+    "test": "jshint lib/* && jscs lib/* && mocha test/*-test.js",
+    "test:watch": "mocha -w test/*-test.js"
   },
   "files": [
     "lib"
