@@ -1,5 +1,17 @@
 ## Change log
 
+### v4.0.0
+
+#### Added
+- Support for managed users by @hyperlink [#70](https://github.com/phillipj/node-plex-api/pull/70) <br>
+  By specifying `options.managedUser` when creating a plex-api client, see more in [Readme.md](./Readme.md).
+
+  [About managed users on support.plex.tv](https://support.plex.tv/hc/en-us/articles/203948776-Managed-Users).
+
+#### BREAKING CHANGE
+
+Requires at least Node.js v4.0.
+
 ### v3.5.0
 
 #### Added
