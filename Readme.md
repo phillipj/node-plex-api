@@ -103,7 +103,7 @@ Note that the parameters can only be passed as a query string as part of the uri
 var PlexAPI = require("plex-api");
 var client = new PlexAPI("192.168.0.1");
 
-client.putQuery("/library/sections/3/all?id=123&summary.value=updatedSummaryText")
+client.putQuery("/library/sections/3/all?type=1&id=123&summary.value=updatedSummaryText")
 	.then(function (result) {
 		console.log("Description of video by id 123 has been set to 'updatedSummaryText'");
 	}, function (err) {
