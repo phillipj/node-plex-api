@@ -103,6 +103,20 @@ describe('Authenticator', function() {
             });
         });
 
+        it('rejects when providing token and server still responds with 401', function () {
+            scope = server.start({
+                statusCode: 401,
+                retryStatusCode: 401,
+                expectRetry: true
+            });
+
+            return api.query(ROOT_URL).then(function onSuccess(result) {
+                throw new Error('Query should not have succeeded!');
+            }, function onError() {
+                scope.done();
+            });
+        });
+
     });
 
     describe('default authenticator', function() {
