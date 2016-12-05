@@ -55,7 +55,7 @@ module.exports = {
 			scope
 				.get('/')
 				.matchHeader('X-Plex-Token', 'abc-pretend-to-be-token')
-				.reply(200, respondToRequest);
+				.reply(options.retryStatusCode || 200, respondToRequest);
 		}
 
 		return scope;
