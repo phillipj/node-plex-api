@@ -49,7 +49,7 @@ describe('putQuery()', function() {
 	});
 
 	it('promise should fail when server responds with failure status code', function() {
-        return api.putQuery(ROOT_URL).fail(function(err) {
+		return api.putQuery(ROOT_URL).catch(function(err) {
 			expect(err).not.to.be(null);
 		});
 	});
