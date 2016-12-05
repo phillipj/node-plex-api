@@ -1,5 +1,17 @@
 ## Change log
 
+### v5.0.0
+
+#### Changed
+- Replace use of Q with native Promise by @phillipj [#77](https://github.com/phillipj/node-plex-api/pull/77)
+
+## Fixed
+- Fix undefined runtime error when authenticating by @phillipj [#76](https://github.com/phillipj/node-plex-api/pull/76)
+
+#### BREAKING CHANGE
+
+All methods now return native Promise instances, rather than Q promises as before.
+
 ### v4.0.0
 
 #### Added
