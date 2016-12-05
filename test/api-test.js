@@ -42,7 +42,7 @@ describe('Module API', function() {
 
 		server.start({ port: 32401 });
 
-		api.query(ROOT_URL).done(function(result) {
+		api.query(ROOT_URL).then(function(result) {
 			expect(result).to.be.an('object');
 			done();
 		});
@@ -77,7 +77,7 @@ describe('Module API', function() {
 			}
 		});
 
-		api.query(ROOT_URL).done(function(result) {
+		api.query(ROOT_URL).then(function(result) {
 			expect(result).to.be.an('object');
 			nockServer.done();
 		});

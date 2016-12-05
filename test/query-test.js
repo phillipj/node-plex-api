@@ -58,7 +58,7 @@ describe('query()', function() {
 
 		api.query(ROOT_URL).then(function() {
 			done(Error('Shouldnt succeed!'));
-		}).fail(function(err) {
+		}).catch(function(err) {
 			expect(err).not.to.be(null);
 			done();
 		});
