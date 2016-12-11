@@ -241,6 +241,12 @@ The Plex Remote control app for the Homey device.
 
 https://github.com/MikeOne/nl.kikkert.plex by [@MikeOne](https://github.com/MikeOne).
 
+### plex2netflix
+
+See how much of your media from Plex is available on Netflix with a CLI command.
+
+https://github.com/SpaceK33z/plex2netflix by [@SpaceK33z](https://github.com/SpaceK33z).
+
 ## Contributing
 
 Contributions are more than welcome! Create an issue describing what you want to do. If that feature is seen to fit this project, send a pull request with the changes accompanied by tests.
