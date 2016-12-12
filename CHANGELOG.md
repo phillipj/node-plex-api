@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.0.1
+
+#### Changed
+- Updated request v2.72.0 -> 2.79.0 by @SpaceK33z [#78](https://github.com/phillipj/node-plex-api/pull/78)
+
 ### v5.0.0
 
 #### Changed
