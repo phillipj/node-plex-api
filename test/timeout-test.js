@@ -16,10 +16,11 @@ describe('timeout error', function() {
 
 	afterEach(server.stop);
 
-	it('returns error on timeout', function(done) {
-		api.query('/').catch(function (err) {
-			expect(err.code).to.be('ETIMEDOUT');
-			done();
+	it('returns error on timeout', function() {
+		return api.query('/').then(() => {
+			throw new Error('Should not succeed!');
+		}).catch(function (err) {
+			expect(err.code).to.be('ESOCKETTIMEDOUT');
 		});
 	});
 });

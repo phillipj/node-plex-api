@@ -124,7 +124,7 @@ module.exports = {
 				})
 				.filteringPath(replaceActualPathToRoot)
 				.get('/')
-				.delayConnection(options.delay)
+				.socketDelay(options.delay)
 				.reply(options.statusCode || 200, respondToRequest);
 	}
 };
