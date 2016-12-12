@@ -9,7 +9,7 @@
   "dependencies": {
     "plex-api-credentials": "^3.0.0",
     "plex-api-headers": "1.1.0",
-    "request": "2.72.0",
+    "request": "2.79.0",
     "uuid": "2.0.2",
     "xml2js": "0.4.16"
   },
