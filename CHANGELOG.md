@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.0.2
+
+#### Fixed
+- reject() instead of throw when authenticating by @dabbers [#82](https://github.com/phillipj/node-plex-api/pull/82)
+
 ### v5.0.1
 
 #### Changed
