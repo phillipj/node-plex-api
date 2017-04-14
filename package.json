@@ -15,16 +15,19 @@
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "jscs": "^3.0.0",
-    "jshint": "^2.8.0",
     "mocha": "^2.5.0",
     "nock": "^8.0.0",
+    "prettier": "1.1.0",
     "proxyquire": "^1.7.3",
     "sinon": "^1.17.2"
   },
   "scripts": {
-    "test": "jshint lib/* && jscs lib/* && mocha test/*-test.js",
-    "test:watch": "mocha -w test/*-test.js"
+    "format": "npm run format:exec -- --write",
+    "format:exec": "prettier --single-quote --print-width=120 --tab-width=4 '{lib,test}/**/*.js'",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:lint": "npm run format:exec -- --list-different",
+    "test:unit": "mocha test/*-test.js",
+    "test:watch": "npm run test:unit -- -w"
   },
   "files": [
     "lib"

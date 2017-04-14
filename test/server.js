@@ -6,125 +6,125 @@ var PLEX_SERVER_PORT = 32400;
 var respondWith;
 
 function hasExtension(filename) {
-	return filename.indexOf('.') !== -1;
+    return filename.indexOf('.') !== -1;
 }
 
 function replaceSlashWithRoot(uri) {
-	return uri.replace(/^\/$/, '/root');
+    return uri.replace(/^\/$/, '/root');
 }
 
 function respondToRequest(uri, requestBody, cb) {
-	uri = replaceSlashWithRoot(uri);
+    uri = replaceSlashWithRoot(uri);
 
-	var filepath = hasExtension(uri) ? uri : uri + '.json';
-	if (respondWith === 'content') {
-		fs.readFile('test/samples/'+ filepath, cb);
-	} else if (respondWith === 'failure') {
-		return cb(new Error('Server decided to fail...'));
-	} else {
-		cb(null);
-	}
+    var filepath = hasExtension(uri) ? uri : uri + '.json';
+    if (respondWith === 'content') {
+        fs.readFile('test/samples/' + filepath, cb);
+    } else if (respondWith === 'failure') {
+        return cb(new Error('Server decided to fail...'));
+    } else {
+        cb(null);
+    }
 }
 
 // Looks kinda strange, but its needed for nock
 // not to explode as we've got one .get('/') in our nock scope
 function replaceActualPathToRoot(path) {
-	return '/';
+    return '/';
 }
 
 module.exports = {
-	start: function start(options) {
-		options = options || {};
-		options.schemeAndHost = options.schemeAndHost || 'http://localhost';
-		options.port = options.port || PLEX_SERVER_PORT;
-		options.contentType = options.contentType || 'application/json';
-		respondWith = 'content';
+    start: function start(options) {
+        options = options || {};
+        options.schemeAndHost = options.schemeAndHost || 'http://localhost';
+        options.port = options.port || PLEX_SERVER_PORT;
+        options.contentType = options.contentType || 'application/json';
+        respondWith = 'content';
 
-		var scope = nock(options.schemeAndHost + ':' + options.port, {
-					reqheaders: options.reqheaders
-				})
-				.defaultReplyHeaders({
-					'Content-Type': options.contentType
-				})
-				.filteringPath(replaceActualPathToRoot)
-				.get('/')
-				.reply(options.statusCode || 200, respondToRequest);
+        var scope = nock(options.schemeAndHost + ':' + options.port, {
+            reqheaders: options.reqheaders
+        })
+            .defaultReplyHeaders({
+                'Content-Type': options.contentType
+            })
+            .filteringPath(replaceActualPathToRoot)
+            .get('/')
+            .reply(options.statusCode || 200, respondToRequest);
 
-		// NOT TO PLEASED ABOUT HARDCODING THIS MATCHHEADER() TOKEN ...
-		if (options.expectRetry) {
-			scope
-				.get('/')
-				.matchHeader('X-Plex-Token', 'abc-pretend-to-be-token')
-				.reply(options.retryStatusCode || 200, respondToRequest);
-		}
+        // NOT TO PLEASED ABOUT HARDCODING THIS MATCHHEADER() TOKEN ...
+        if (options.expectRetry) {
+            scope
+                .get('/')
+                .matchHeader('X-Plex-Token', 'abc-pretend-to-be-token')
+                .reply(options.retryStatusCode || 200, respondToRequest);
+        }
 
-		return scope;
-	},
+        return scope;
+    },
 
-	empty: function empty() {
-		return nock('http://localhost' + ':' + PLEX_SERVER_PORT);
-	},
+    empty: function empty() {
+        return nock('http://localhost' + ':' + PLEX_SERVER_PORT);
+    },
 
-	expectsPost: function expectsPost(options) {
-		options = options || {};
-		options.port = options.port || PLEX_SERVER_PORT;
-		options.contentType = options.contentType || 'application/json';
-		respondWith = 'content';
+    expectsPost: function expectsPost(options) {
+        options = options || {};
+        options.port = options.port || PLEX_SERVER_PORT;
+        options.contentType = options.contentType || 'application/json';
+        respondWith = 'content';
 
-		return nock('http://localhost:' + options.port, {
-					reqheaders: options.reqheaders
-				})
-				.defaultReplyHeaders({
-					'Content-Type': options.contentType
-				})
-				.filteringPath(replaceActualPathToRoot)
-				.post('/')
-				.reply(options.statusCode || 200, respondToRequest);
-	},
+        return nock('http://localhost:' + options.port, {
+            reqheaders: options.reqheaders
+        })
+            .defaultReplyHeaders({
+                'Content-Type': options.contentType
+            })
+            .filteringPath(replaceActualPathToRoot)
+            .post('/')
+            .reply(options.statusCode || 200, respondToRequest);
+    },
 
-	expectsPut: function expectsPut(options) {
-		options = options || {};
-		options.port = options.port || PLEX_SERVER_PORT;
-		options.contentType = options.contentType || 'application/json';
-		respondWith = 'content';
+    expectsPut: function expectsPut(options) {
+        options = options || {};
+        options.port = options.port || PLEX_SERVER_PORT;
+        options.contentType = options.contentType || 'application/json';
+        respondWith = 'content';
 
-		return nock('http://localhost:' + options.port, {
-					reqheaders: options.reqheaders
-				})
-				.defaultReplyHeaders({
-					'Content-Type': options.contentType
-				})
-				.filteringPath(replaceActualPathToRoot)
-				.put('/')
-				.reply(options.statusCode || 200, respondToRequest);
-	},
+        return nock('http://localhost:' + options.port, {
+            reqheaders: options.reqheaders
+        })
+            .defaultReplyHeaders({
+                'Content-Type': options.contentType
+            })
+            .filteringPath(replaceActualPathToRoot)
+            .put('/')
+            .reply(options.statusCode || 200, respondToRequest);
+    },
 
-	stop: function stop() {
-		nock.cleanAll();
-	},
+    stop: function stop() {
+        nock.cleanAll();
+    },
 
-	withoutContent: function withoutContent() {
-		respondWith = null;
-	},
+    withoutContent: function withoutContent() {
+        respondWith = null;
+    },
 
-	fails: function fails() {
-		respondWith = 'failure';
-	},
+    fails: function fails() {
+        respondWith = 'failure';
+    },
 
-	timeoutError: function timeoutError(options) {
-		options = options || {};
-		options.port = options.port || PLEX_SERVER_PORT;
-		options.delay = options.delay || 3000
-		options.contentType = options.contentType || 'application/json';
-		respondWith = 'content';
+    timeoutError: function timeoutError(options) {
+        options = options || {};
+        options.port = options.port || PLEX_SERVER_PORT;
+        options.delay = options.delay || 3000;
+        options.contentType = options.contentType || 'application/json';
+        respondWith = 'content';
 
-		return nock('http://localhost:' + options.port)
-				.defaultReplyHeaders({
-					'Content-Type': options.contentType
-				})
-				.filteringPath(replaceActualPathToRoot)
-				.get('/')
-				.socketDelay(options.delay)
-				.reply(options.statusCode || 200, respondToRequest);
-	}
+        return nock('http://localhost:' + options.port)
+            .defaultReplyHeaders({
+                'Content-Type': options.contentType
+            })
+            .filteringPath(replaceActualPathToRoot)
+            .get('/')
+            .socketDelay(options.delay)
+            .reply(options.statusCode || 200, respondToRequest);
+    }
 };

@@ -223,6 +223,15 @@ Automatically run all tests whenever files has been changed:
 $ npm run test:watch
 ```
 
+**NB!** This project runs [prettier](https://github.com/prettier/prettier) for code formatting.
+The test script will fail if prettier rules are not followed. Scripts can be formatted by running:
+
+```bash
+$ npm run format
+```
+
+or by adding an editor plugin/extension as described in the [prettier](https://github.com/prettier/prettier) project.
+
 ## Usage in the wild
 
 plex-api has proven to be useful in more than one project over the years.
