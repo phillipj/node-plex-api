@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.1.0
+
+#### Added
+- Allow custom response parser to be provided upon instantiation by @phillipj [76539c](https://github.com/phillipj/node-plex-api/commit/76539c8bca455607d3f2aced0b20d91a13d1b936)
+
 ### v5.0.2
 
 #### Fixed
