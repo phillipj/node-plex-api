@@ -143,4 +143,19 @@ describe('query()', function() {
             });
         });
     });
+
+    describe('response parser', () => {
+        it('allows response parser to be provided upon client instantiation', () => {
+            const staticResponseParser = () => Promise.resolve('Response parsing has been overriden');
+
+            api = new PlexAPI({
+                hostname: 'localhost',
+                responseParser: staticResponseParser
+            });
+
+            return api.query('/').then(result => {
+                expect(result).to.be('Response parsing has been overriden');
+            });
+        });
+    });
 });

@@ -25,6 +25,7 @@ Options:
 	- **pin**: optional pin code for the managed user
 - **token**: plex.tv authentication token (optional)
 - **timeout**: timeout value in milliseconds to use when making requests (optional)
+- **responseParser**: custom function to be used parsing all responses from Plex Server (optional)
 - **options**: override additional PlexHome options (optional, but recommended for PlexHome)
 	- **identifier**: A unique client identifier. Default is a `generated uuid v4`. *Note: you should really provide this rather than let it get generated. Every time your app runs, a new "device" will get registered on your Plex account, which can lead to poor performance once hundreds or thousands of them get created. Trust me!*
 	- **product**: The name of your application. Official Plex examples: `Plex Web`, `Plex Home Theater`, `Plex for Xbox One`. Default `Node.js App`
@@ -205,6 +206,22 @@ An optional method `initialize()` could be implemented if you need reference to 
     // or when you have a token
     callback(null, 'I-found-this-token');
   }
+}
+```
+
+## Response parsing
+
+You can provide a custom function responsible for parsing all Plex Server responses if you need to, by providing it in the `responseParser` when instantiating a Plex API client.
+
+The default implementation either parses the JSON in the response from the Plex Server, converts XML to a JavaScript object or returns the response as is, depending on the response Content-Type header.
+
+A response parsing function gets two arguments provided: `response`, `body` and is expected to return a `Promise`.
+
+```js
+function myCustomJsonResponseParser(response, body) {
+	const bodyAsString = body.toString('ut8');
+
+	return Promise.resolve(bodyAsString).then(JSON.parse);
 }
 ```
 
