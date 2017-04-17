@@ -1,5 +1,7 @@
 # plex-api [![Build Status](https://api.travis-ci.org/phillipj/node-plex-api.png?branch=master)](http://travis-ci.org/phillipj/node-plex-api)
 
+[![Join the chat at https://gitter.im/phillipj/node-plex-api](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/phillipj/node-plex-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Small module which helps you query the Plex Media Server HTTP API.
 
 ## Usage
