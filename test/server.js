@@ -99,6 +99,23 @@ module.exports = {
             .reply(options.statusCode || 200, respondToRequest);
     },
 
+    expectsDelete: function expectsDelete(options) {
+        options = options || {};
+        options.port = options.port || PLEX_SERVER_PORT;
+        options.contentType = options.contentType || 'text/html';
+        respondWith = null;
+
+        return nock('http://localhost:' + options.port, {
+            reqheaders: options.reqheaders
+        })
+            .defaultReplyHeaders({
+                'Content-Type': options.contentType
+            })
+            .filteringPath(replaceActualPathToRoot)
+            .delete('/')
+            .reply(options.statusCode || 200, respondToRequest);
+    },
+
     stop: function stop() {
         nock.cleanAll();
     },
