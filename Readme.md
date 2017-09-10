@@ -112,7 +112,7 @@ client.putQuery("/library/sections/3/all?type=1&id=123&summary.value=updatedSumm
 	});
 ```
 
-### .putQuery(options)
+### .deleteQuery(options)
 
 **Send a DELETE request and retrieve the response**
 
