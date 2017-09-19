@@ -112,6 +112,27 @@ client.putQuery("/library/sections/3/all?type=1&id=123&summary.value=updatedSumm
 	});
 ```
 
+### .deleteQuery(options)
+
+**Send a DELETE request and retrieve the response**
+
+This is identical to `query()`, except that the request will be a DELETE rather than a GET. It has the same required and optional parameters as `query()`. It's is used to delete parts of your Plex library.
+
+Note this will also delete the media files on hard disk! This can be allowed or forbidden in the plex-media-server options.
+Returns status code 403 if delete is not allowed in the plex-media-server options.
+
+```js
+var PlexAPI = require("plex-api");
+var client = new PlexAPI("192.168.0.1");
+
+client.deleteQuery("/library/metadata/10001/media/2002")
+	.then(function () {
+		console.log("Media was successfully deleted");
+	}, function (err) {
+		console.error("Could not connect to server", err);
+	});
+```
+
 ### .perform(options)
 
 **Perform an API action**
