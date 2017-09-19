@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.2.0
+
+#### Added
+- Add .deleteQuery() by [@Mario-F](https://github.com/Mario-F) [#89](https://github.com/phillipj/node-plex-api/pull/89)
+
 ### v5.1.0
 
 #### Added
