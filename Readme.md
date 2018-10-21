@@ -301,7 +301,7 @@ Contributions are more than welcome! Create an issue describing what you want to
 ## License
 (The MIT License)
 
-Copyright (c) 2013-2017 Phillip Johnsen &lt;johphi@gmail.com&gt;
+Copyright (c) 2013-2018 Phillip Johnsen &lt;johphi@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
