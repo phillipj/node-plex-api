@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.2.2
+
+#### Changed
+- Updated lodash v4.17.10 -> v4.17.11 by [@phillipj](https://github.com/phillipj) [#100](https://github.com/phillipj/node-plex-api/pull/100)
+
 ### v5.2.1
 
 #### Changed
