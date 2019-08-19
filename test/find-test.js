@@ -78,4 +78,11 @@ describe('find()', function() {
             expect(clients[0].name).to.be('mac-mini');
         });
     });
+
+    it('should handle finding all Server items in PMS v1.3 responses', function() {
+        return api.find('/clients-pms-v1_3').then(function(clients) {
+            expect(clients.length).to.be(3);
+            expect(clients[0].name).to.be('RasPlex-1');
+        });
+    });
 });

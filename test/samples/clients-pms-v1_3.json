@@ -1,0 +1,46 @@
+{
+  "MediaContainer": {
+      "size": 3,
+      "Server": [
+          {
+              "name": "RasPlex-1",
+              "host": "192.168.1.29",
+              "address": "192.168.1.29",
+              "port": 3005,
+              "machineIdentifier": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+              "version": "1.8.0.148-573b6d73",
+              "protocol": "plex",
+              "product": "plexhometheater",
+              "deviceClass": "pc",
+              "protocolVersion": "1",
+              "protocolCapabilities": "navigation,playback,timeline,mirror,playqueues"
+          },
+          {
+              "name": "RasPlex-2",
+              "host": "192.168.1.48",
+              "address": "192.168.1.48",
+              "port": 3005,
+              "machineIdentifier": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+              "version": "1.8.0.148-573b6d73",
+              "protocol": "plex",
+              "product": "plexhometheater",
+              "deviceClass": "pc",
+              "protocolVersion": "1",
+              "protocolCapabilities": "navigation,playback,timeline,mirror,playqueues"
+          },
+          {
+              "name": "RasPlex-3",
+              "host": "192.168.1.5",
+              "address": "192.168.1.5",
+              "port": 3005,
+              "machineIdentifier": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+              "version": "1.8.0.148-573b6d73",
+              "protocol": "plex",
+              "product": "plexhometheater",
+              "deviceClass": "pc",
+              "protocolVersion": "1",
+              "protocolCapabilities": "navigation,playback,timeline,mirror,playqueues"
+          }
+      ]
+  }
+}
