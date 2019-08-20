@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.2.3
+
+#### Fixed
+- Basic support for handling responses from Plex Media Server v1.3 (and above) by [@Andy1210](https://github.com/Andy1210) [#92](https://github.com/phillipj/node-plex-api/pull/92)
+
 ### v5.2.2
 
 #### Changed
