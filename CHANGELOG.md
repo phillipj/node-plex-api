@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.2.5
+
+#### Changed
+- Updated mocha because of vulnerabilities by [@phillipj](https://github.com/phillipj)
+
 ### v5.2.4
 
 #### Changed
