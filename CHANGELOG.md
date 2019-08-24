@@ -1,5 +1,10 @@
 ## Change log
 
+### v5.2.4
+
+#### Changed
+- Updated plex-api-credentials & lodash of child dependencies because of vulnerabilities by [@phillipj](https://github.com/phillipj)
+
 ### v5.2.3
 
 #### Fixed
