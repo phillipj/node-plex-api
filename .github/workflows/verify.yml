@@ -2,14 +2,14 @@ name: Verify changes
 
 on: [push, pull_request]
 
-jobs:       
+jobs:
   build:
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        node-version: [4.x, 6.x, 8.x, 10.x, 12.x]
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: node --version
-      - run: npm --version          
+      - run: npm --version
       - name: npm install and test
         run: |
           npm install

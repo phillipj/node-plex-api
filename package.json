@@ -38,7 +38,7 @@
     "api"
   ],
   "engines": {
-    "node": ">=4.0"
+    "node": ">=8.0"
   },
   "author": "Phillip Johnsen <phillip@lightweight.no>",
   "license": "MIT"
