@@ -1,5 +1,11 @@
 ## Change log
 
+### v5.3.0
+
+#### Added
+
+- Allow additional options for request by [@Zefau](https://github.com/Zefau) [#104](https://github.com/phillipj/node-plex-api/pull/104)
+
 ### v5.2.5
 
 #### Changed
