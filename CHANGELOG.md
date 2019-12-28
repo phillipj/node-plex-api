@@ -1,5 +1,11 @@
 ## Change log
 
+### v5.3.1
+
+#### Fixed
+
+- If Content-Type is missing, default to a UTF-8 string response by [@nicjansma](https://github.com/nicjansma) [#105](https://github.com/phillipj/node-plex-api/pull/105)
+
 ### v5.3.0
 
 #### Added
