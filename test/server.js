@@ -41,10 +41,10 @@ module.exports = {
         respondWith = 'content';
 
         var scope = nock(options.schemeAndHost + ':' + options.port, {
-            reqheaders: options.reqheaders
+            reqheaders: options.reqheaders,
         })
             .defaultReplyHeaders({
-                'Content-Type': options.contentType
+                'Content-Type': options.contentType,
             })
             .filteringPath(replaceActualPathToRoot)
             .get('/')
@@ -72,10 +72,10 @@ module.exports = {
         respondWith = 'content';
 
         return nock('http://localhost:' + options.port, {
-            reqheaders: options.reqheaders
+            reqheaders: options.reqheaders,
         })
             .defaultReplyHeaders({
-                'Content-Type': options.contentType
+                'Content-Type': options.contentType,
             })
             .filteringPath(replaceActualPathToRoot)
             .post('/')
@@ -89,10 +89,10 @@ module.exports = {
         respondWith = 'content';
 
         return nock('http://localhost:' + options.port, {
-            reqheaders: options.reqheaders
+            reqheaders: options.reqheaders,
         })
             .defaultReplyHeaders({
-                'Content-Type': options.contentType
+                'Content-Type': options.contentType,
             })
             .filteringPath(replaceActualPathToRoot)
             .put('/')
@@ -106,10 +106,10 @@ module.exports = {
         respondWith = null;
 
         return nock('http://localhost:' + options.port, {
-            reqheaders: options.reqheaders
+            reqheaders: options.reqheaders,
         })
             .defaultReplyHeaders({
-                'Content-Type': options.contentType
+                'Content-Type': options.contentType,
             })
             .filteringPath(replaceActualPathToRoot)
             .delete('/')
@@ -137,11 +137,11 @@ module.exports = {
 
         return nock('http://localhost:' + options.port)
             .defaultReplyHeaders({
-                'Content-Type': options.contentType
+                'Content-Type': options.contentType,
             })
             .filteringPath(replaceActualPathToRoot)
             .get('/')
             .socketDelay(options.delay)
             .reply(options.statusCode || 200, respondToRequest);
-    }
+    },
 };

@@ -3,12 +3,12 @@ var server = require('./server');
 
 var PlexAPI = require('..');
 
-describe('query()', function() {
+describe('query()', function () {
     var api;
 
-    beforeEach(function() {
+    beforeEach(function () {
         server.start({
-            contentType: 'image/jpg'
+            contentType: 'image/jpg',
         });
 
         api = new PlexAPI('localhost');
@@ -16,8 +16,8 @@ describe('query()', function() {
 
     afterEach(server.stop);
 
-    it('resource endpoint should return a buffer', function() {
-        return api.query('/resources/movie-creative-commons-flowercat.jpg').then(function(result) {
+    it('resource endpoint should return a buffer', function () {
+        return api.query('/resources/movie-creative-commons-flowercat.jpg').then(function (result) {
             expect(result).to.be.a(Buffer);
         });
     });

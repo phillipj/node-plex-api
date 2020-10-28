@@ -5,10 +5,10 @@ var ROOT_URL = '/';
 
 var PlexAPI = require('..');
 
-describe('Module API', function() {
+describe('Module API', function () {
     var api;
 
-    beforeEach(function() {
+    beforeEach(function () {
         server.start();
 
         api = new PlexAPI('localhost');
@@ -16,39 +16,39 @@ describe('Module API', function() {
 
     afterEach(server.stop);
 
-    it('should expose constructor', function() {
+    it('should expose constructor', function () {
         expect(PlexAPI).to.be.a('function');
     });
 
-    it('should be instance of the PlexAPI', function() {
+    it('should be instance of the PlexAPI', function () {
         expect('PlexAPI').to.be(api.constructor.name);
     });
 
-    it('should require server host as first constructor parameter', function() {
-        expect(function() {
+    it('should require server host as first constructor parameter', function () {
+        expect(function () {
             new PlexAPI();
         }).to.throwException('TypeError');
     });
 
-    it('first parameter should set host of Plex Media Server', function() {
+    it('first parameter should set host of Plex Media Server', function () {
         expect(api.getHostname()).to.be('localhost');
     });
 
-    it('should have configurable server port', function(done) {
+    it('should have configurable server port', function (done) {
         api = new PlexAPI({
             hostname: 'localhost',
-            port: 32401
+            port: 32401,
         });
 
         server.start({ port: 32401 });
 
-        api.query(ROOT_URL).then(function(result) {
+        api.query(ROOT_URL).then(function (result) {
             expect(result).to.be.an('object');
             done();
         });
     });
 
-    it('should have configurable options that get sent in every request', function() {
+    it('should have configurable options that get sent in every request', function () {
         api = new PlexAPI({
             hostname: 'localhost',
             token: 'mock-token',
@@ -59,8 +59,8 @@ describe('Module API', function() {
                 device: 'mock-device',
                 deviceName: 'mock-deviceName',
                 platform: 'mock-platform',
-                platformVersion: 'mock-platformVersion'
-            }
+                platformVersion: 'mock-platformVersion',
+            },
         });
 
         server.stop();
@@ -73,11 +73,11 @@ describe('Module API', function() {
                 'X-Plex-Device-Name': 'mock-deviceName',
                 'X-Plex-Platform': 'mock-platform',
                 'X-Plex-Platform-Version': 'mock-platformVersion',
-                'X-Plex-Token': 'mock-token'
-            }
+                'X-Plex-Token': 'mock-token',
+            },
         });
 
-        api.query(ROOT_URL).then(function(result) {
+        api.query(ROOT_URL).then(function (result) {
             expect(result).to.be.an('object');
             nockServer.done();
         });

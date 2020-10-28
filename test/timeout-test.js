@@ -5,10 +5,10 @@ var ROOT_URL = '/';
 
 var PlexAPI = require('..');
 
-describe('timeout error', function() {
+describe('timeout error', function () {
     var api;
 
-    beforeEach(function() {
+    beforeEach(function () {
         server.timeoutError();
 
         api = new PlexAPI({ hostname: 'localhost', timeout: 10 });
@@ -16,13 +16,13 @@ describe('timeout error', function() {
 
     afterEach(server.stop);
 
-    it('returns error on timeout', function() {
+    it('returns error on timeout', function () {
         return api
             .query('/')
             .then(() => {
                 throw new Error('Should not succeed!');
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 expect(err.code).to.be('ESOCKETTIMEDOUT');
             });
     });
