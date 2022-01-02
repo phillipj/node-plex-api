@@ -1,5 +1,11 @@
 ## Change log
 
+### v5.3.2
+
+#### Fixed
+
+- Fix `.find()` query selecting wrong children object by [@hkjasf687261gh](https://github.com/hkjasf687261gh) [#114](https://github.com/phillipj/node-plex-api/pull/114)
+
 ### v5.3.1
 
 #### Fixed
