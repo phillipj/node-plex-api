@@ -1,6 +1,6 @@
 {
   "name": "plex-api",
-  "version": "5.3.1",
+  "version": "5.3.2",
   "description": "Simple wrapper for querying against HTTP API on the Plex Media Server",
   "main": "lib/api.js",
   "directories": {
